@@ -1,27 +1,469 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
+void outro(){
+    printf("|============================================|\n");
+    printf("\t\tTerimakasih Telah Mencoba    \n");
+    printf("\tProgram ini dibuat oleh : \n");
+    printf("|============================================|\n\n");
+}
 
 int D1_1(){
     float debit_1, debit_2, debit;
-    int hasil;
+    int hasil, ulangi, validasi;
+    int hours, minutes, seconds, hari, bulan, tahun;
+
+    time_t now;
+    time(&now);
+    struct tm *local = localtime(&now);
+    hari = local->tm_mday;            
+    bulan = local->tm_mon + 1;      
+    tahun = local->tm_year + 1900;   
+
     char name[50];
-    
+    printf("|================================================|\n");
+    printf("|                 Masukkan Data Anda             |\n");
+    printf("|================================================|\n");
     printf("Masukkan nama anda: ");
+    getchar();
     fgets(name, sizeof(name), stdin);
     system("clear");
 
-    printf("|================================================|\n");
-    printf("Masukkan debit pemakaian air anda bulan lalu: ");
+    printf("|====================================================|\n");
+    printf("|                 Masukkan Data Anda                 |\n");
+    printf("|====================================================|\n");
+    printf("|Masukkan debit pemakaian air anda bulan lalu (m^3): ");
     scanf("%f", &debit_1);
-    printf("Masukkan debit pemakaian air anda bulan ini: ");
+    printf("|Masukkan debit pemakaian air anda bulan ini (m^3): ");
     scanf("%f", &debit_2);
-    printf("masukkan nama :");
-
+    system("clear");
     
     debit = debit_1 - debit_2;
 
     if(debit >= 0 && debit<= 10){
-        hasil = debit * 1780;
+        hasil = 10 * 1780;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = debit * 2060;
+    }else if (debit > 20){
+        hasil = debit * 5880;
+    }else {
+        D1_1();
+    }
+    
+
+    printf("|================================================|\n");
+    printf("|                     Data Anda                  |\n");
+    printf("|================================================|\n");
+    printf("|Nama: %s", name);
+    printf("|Kelompok: D1-1\n");
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_1);
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_2);
+    printf("|Apakah data di atas benar ? \n");
+    printf("|1. iya\n");
+    printf("|2. tidak\n\n: ");
+    scanf("%d", &validasi);
+    system("clear");
+    if(validasi == 1){
+        printf("|================================================|\n");
+        printf("|               Hasil Dari Perhitungan           |\n");
+        printf("|================================================|\n");
+        printf("|Nama: %s", name);
+        printf("|Kelompok: D1-1\n");
+        printf("|Tanggal:  %02d/%02d/%d\n", hari,bulan,tahun);
+        printf("|Nominal Hasil:Rp %d,- ", hasil);
+    }else if (validasi == 2)
+    {
+        printf("Apakah anda ingin mengulangi lagi ?\n");
+        printf("1. iya\n");
+        printf("2. tidak\n\n");
+        scanf(": %d", &ulangi);
+        if(ulangi == 1){
+            D1_1();
+        }else if (ulangi == 2)
+        {
+            outro();
+        }else {
+            printf("anda memasukkan angka yang salah");
+        }
+    }
+    else{
+        outro();
+    }
+    return 0;
+}
+
+int D1_2(){ 
+    float debit_1, debit_2, debit; //belum di edit broo
+    int hasil, ulangi, validasi;
+    int hours, minutes, seconds, hari, bulan, tahun;
+
+    time_t now;
+    time(&now);
+    struct tm *local = localtime(&now);
+    hari = local->tm_mday;            
+    bulan = local->tm_mon + 1;      
+    tahun = local->tm_year + 1900;   
+
+    char name[50];
+    printf("|================================================|\n");
+    printf("|                 Masukkan Data Anda             |\n");
+    printf("|================================================|\n");
+    printf("Masukkan nama anda: ");
+    getchar();
+    fgets(name, sizeof(name), stdin);
+    system("clear");
+
+    printf("|====================================================|\n");
+    printf("|                 Masukkan Data Anda                 |\n");
+    printf("|====================================================|\n");
+    printf("|Masukkan debit pemakaian air anda bulan lalu (m^3): ");
+    scanf("%f", &debit_1);
+    printf("|Masukkan debit pemakaian air anda bulan ini (m^3): ");
+    scanf("%f", &debit_2);
+    system("clear");
+    
+    debit = debit_1 - debit_2;
+
+    if(debit >= 0 && debit<= 10){
+        hasil = 10 * 1780;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = debit * 2060;
+    }else if (debit > 20){
+        hasil = debit * 5880;
+    }else {
+        D1_1();
+    }
+    
+
+    printf("|================================================|\n");
+    printf("|                     Data Anda                  |\n");
+    printf("|================================================|\n");
+    printf("|Nama: %s", name);
+    printf("|Kelompok: D1-1\n");
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_1);
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_2);
+    printf("|Apakah data di atas benar ? \n");
+    printf("|1. iya\n");
+    printf("|2. tidak\n\n: ");
+    scanf("%d", &validasi);
+    system("clear");
+    if(validasi == 1){
+        printf("|================================================|\n");
+        printf("|               Hasil Dari Perhitungan           |\n");
+        printf("|================================================|\n");
+        printf("|Nama: %s", name);
+        printf("|Kelompok: D1-1\n");
+        printf("|Tanggal:  %02d/%02d/%d\n", hari,bulan,tahun);
+        printf("|Nominal Hasil:Rp %d,- ", hasil);
+    }else if (validasi == 2)
+    {
+        printf("Apakah anda ingin mengulangi lagi ?\n");
+        printf("1. iya\n");
+        printf("2. tidak\n\n");
+        scanf(": %d", &ulangi);
+        if(ulangi == 1){
+            D1_1();
+        }else if (ulangi == 2)
+        {
+            outro();
+        }else {
+            printf("anda memasukkan angka yang salah");
+        }
+    }
+    else{
+        outro();
+    }
+    return 0;
+}
+
+int D2_1(){
+    float debit_1, debit_2, debit; //belum di edit broo
+    int hasil, ulangi, validasi;
+    int hours, minutes, seconds, hari, bulan, tahun;
+
+    time_t now;
+    time(&now);
+    struct tm *local = localtime(&now);
+    hari = local->tm_mday;            
+    bulan = local->tm_mon + 1;      
+    tahun = local->tm_year + 1900;   
+
+    char name[50];
+    printf("|================================================|\n");
+    printf("|                 Masukkan Data Anda             |\n");
+    printf("|================================================|\n");
+    printf("Masukkan nama anda: ");
+    getchar();
+    fgets(name, sizeof(name), stdin);
+    system("clear");
+
+    printf("|====================================================|\n");
+    printf("|                 Masukkan Data Anda                 |\n");
+    printf("|====================================================|\n");
+    printf("|Masukkan debit pemakaian air anda bulan lalu (m^3): ");
+    scanf("%f", &debit_1);
+    printf("|Masukkan debit pemakaian air anda bulan ini (m^3): ");
+    scanf("%f", &debit_2);
+    system("clear");
+    
+    debit = debit_1 - debit_2;
+
+    if(debit >= 0 && debit<= 10){
+        hasil = 10 * 1780;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = debit * 2060;
+    }else if (debit > 20){
+        hasil = debit * 5880;
+    }else {
+        D1_1();
+    }
+    
+
+    printf("|================================================|\n");
+    printf("|                     Data Anda                  |\n");
+    printf("|================================================|\n");
+    printf("|Nama: %s", name);
+    printf("|Kelompok: D1-1\n");
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_1);
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_2);
+    printf("|Apakah data di atas benar ? \n");
+    printf("|1. iya\n");
+    printf("|2. tidak\n\n: ");
+    scanf("%d", &validasi);
+    system("clear");
+    if(validasi == 1){
+        printf("|================================================|\n");
+        printf("|               Hasil Dari Perhitungan           |\n");
+        printf("|================================================|\n");
+        printf("|Nama: %s", name);
+        printf("|Kelompok: D1-1\n");
+        printf("|Tanggal:  %02d/%02d/%d\n", hari,bulan,tahun);
+        printf("|Nominal Hasil:Rp %d,- ", hasil);
+    }else if (validasi == 2)
+    {
+        printf("Apakah anda ingin mengulangi lagi ?\n");
+        printf("1. iya\n");
+        printf("2. tidak\n\n");
+        scanf(": %d", &ulangi);
+        if(ulangi == 1){
+            D1_1();
+        }else if (ulangi == 2)
+        {
+            outro();
+        }else {
+            printf("anda memasukkan angka yang salah");
+        }
+    }
+    else{
+        outro();
+    }
+    return 0;
+}
+
+int D2_2(){
+    float debit_1, debit_2, debit; //belum di edit broo
+    int hasil, ulangi, validasi;
+    int hours, minutes, seconds, hari, bulan, tahun;
+
+    time_t now;
+    time(&now);
+    struct tm *local = localtime(&now);
+    hari = local->tm_mday;            
+    bulan = local->tm_mon + 1;      
+    tahun = local->tm_year + 1900;   
+
+    char name[50];
+    printf("|================================================|\n");
+    printf("|                 Masukkan Data Anda             |\n");
+    printf("|================================================|\n");
+    printf("Masukkan nama anda: ");
+    getchar();
+    fgets(name, sizeof(name), stdin);
+    system("clear");
+
+    printf("|====================================================|\n");
+    printf("|                 Masukkan Data Anda                 |\n");
+    printf("|====================================================|\n");
+    printf("|Masukkan debit pemakaian air anda bulan lalu (m^3): ");
+    scanf("%f", &debit_1);
+    printf("|Masukkan debit pemakaian air anda bulan ini (m^3): ");
+    scanf("%f", &debit_2);
+    system("clear");
+    
+    debit = debit_1 - debit_2;
+
+    if(debit >= 0 && debit<= 10){
+        hasil = 10 * 1780;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = debit * 2060;
+    }else if (debit > 20){
+        hasil = debit * 5880;
+    }else {
+        D1_1();
+    }
+    
+
+    printf("|================================================|\n");
+    printf("|                     Data Anda                  |\n");
+    printf("|================================================|\n");
+    printf("|Nama: %s", name);
+    printf("|Kelompok: D1-1\n");
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_1);
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_2);
+    printf("|Apakah data di atas benar ? \n");
+    printf("|1. iya\n");
+    printf("|2. tidak\n\n: ");
+    scanf("%d", &validasi);
+    system("clear");
+    if(validasi == 1){
+        printf("|================================================|\n");
+        printf("|               Hasil Dari Perhitungan           |\n");
+        printf("|================================================|\n");
+        printf("|Nama: %s", name);
+        printf("|Kelompok: D1-1\n");
+        printf("|Tanggal:  %02d/%02d/%d\n", hari,bulan,tahun);
+        printf("|Nominal Hasil:Rp %d,- ", hasil);
+    }else if (validasi == 2)
+    {
+        printf("Apakah anda ingin mengulangi lagi ?\n");
+        printf("1. iya\n");
+        printf("2. tidak\n\n");
+        scanf(": %d", &ulangi);
+        if(ulangi == 1){
+            D1_1();
+        }else if (ulangi == 2)
+        {
+            outro();
+        }else {
+            printf("anda memasukkan angka yang salah");
+        }
+    }
+    else{
+        outro();
+    }
+    return 0;
+}
+
+int D3_1(){
+    float debit_1, debit_2, debit; //belum di edit broo
+    int hasil, ulangi, validasi;
+    int hours, minutes, seconds, hari, bulan, tahun;
+
+    time_t now;
+    time(&now);
+    struct tm *local = localtime(&now);
+    hari = local->tm_mday;            
+    bulan = local->tm_mon + 1;      
+    tahun = local->tm_year + 1900;   
+
+    char name[50];
+    printf("|================================================|\n");
+    printf("|                 Masukkan Data Anda             |\n");
+    printf("|================================================|\n");
+    printf("Masukkan nama anda: ");
+    getchar();
+    fgets(name, sizeof(name), stdin);
+    system("clear");
+
+    printf("|====================================================|\n");
+    printf("|                 Masukkan Data Anda                 |\n");
+    printf("|====================================================|\n");
+    printf("|Masukkan debit pemakaian air anda bulan lalu (m^3): ");
+    scanf("%f", &debit_1);
+    printf("|Masukkan debit pemakaian air anda bulan ini (m^3): ");
+    scanf("%f", &debit_2);
+    system("clear");
+    
+    debit = debit_1 - debit_2;
+
+    if(debit >= 0 && debit<= 10){
+        hasil = 10 * 1780;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = debit * 2060;
+    }else if (debit > 20){
+        hasil = debit * 5880;
+    }else {
+        D1_1();
+    }
+    
+
+    printf("|================================================|\n");
+    printf("|                     Data Anda                  |\n");
+    printf("|================================================|\n");
+    printf("|Nama: %s", name);
+    printf("|Kelompok: D1-1\n");
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_1);
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_2);
+    printf("|Apakah data di atas benar ? \n");
+    printf("|1. iya\n");
+    printf("|2. tidak\n\n: ");
+    scanf("%d", &validasi);
+    system("clear");
+    if(validasi == 1){
+        printf("|================================================|\n");
+        printf("|               Hasil Dari Perhitungan           |\n");
+        printf("|================================================|\n");
+        printf("|Nama: %s", name);
+        printf("|Kelompok: D1-1\n");
+        printf("|Tanggal:  %02d/%02d/%d\n", hari,bulan,tahun);
+        printf("|Nominal Hasil:Rp %d,- ", hasil);
+    }else if (validasi == 2)
+    {
+        printf("Apakah anda ingin mengulangi lagi ?\n");
+        printf("1. iya\n");
+        printf("2. tidak\n\n");
+        scanf(": %d", &ulangi);
+        if(ulangi == 1){
+            D1_1();
+        }else if (ulangi == 2)
+        {
+            outro();
+        }else {
+            printf("anda memasukkan angka yang salah");
+        }
+    }
+    else{
+        outro();
+    }
+    return 0;
+}
+
+int D3_2(){
+    float debit_1, debit_2, debit; //belum di edit brooo
+    int hasil, ulangi, validasi;
+    int hours, minutes, seconds, hari, bulan, tahun;
+
+    time_t now;
+    time(&now);
+    struct tm *local = localtime(&now);
+    hari = local->tm_mday;            
+    bulan = local->tm_mon + 1;      
+    tahun = local->tm_year + 1900;   
+
+    char name[50];
+    printf("|================================================|\n");
+    printf("|                 Masukkan Data Anda             |\n");
+    printf("|================================================|\n");
+    printf("Masukkan nama anda: ");
+    getchar();
+    fgets(name, sizeof(name), stdin);
+    system("clear");
+
+    printf("|====================================================|\n");
+    printf("|                 Masukkan Data Anda                 |\n");
+    printf("|====================================================|\n");
+    printf("|Masukkan debit pemakaian air anda bulan lalu (m^3): ");
+    scanf("%f", &debit_1);
+    printf("|Masukkan debit pemakaian air anda bulan ini (m^3): ");
+    scanf("%f", &debit_2);
+    system("clear");
+    
+    debit = debit_1 - debit_2;
+
+    if(hari < 10){
+        if(debit >= 0 && debit<= 10){
+        hasil = 10 * 1780;
     }else if (debit >= 11 && debit <= 20){
         hasil = debit * 2060;
     }else if (debit > 20){
@@ -29,291 +471,2561 @@ int D1_1(){
     }else {
         printf("masukkan nilai dengan benar");
     }
+    }else{
+        if(debit >= 0 && debit<= 10){
+        hasil = (10 * 1780) + 1000;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = (debit * 2060)+1000;
+    }else if (debit > 20){
+        hasil = (debit * 5880)+1000;
+    }else {
+        D1_1();
+    }
+    }
     
-    printf("|================================================|\n");
-    printf("|               Hasil Dari Perhitungan           |\n");
-    printf("|================================================|\n");
-    printf("|nama: %s \n", name);
-    printf("|tanggal: \n");
-    printf("|Nominal Hasil: %d ", hasil);
 
+    printf("|================================================|\n");
+    printf("|                     Data Anda                  |\n");
+    printf("|================================================|\n");
+    printf("|Nama: %s", name);
+    printf("|Kelompok: D1-1\n");
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_1);
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_2);
+    printf("|Apakah data di atas benar ? \n");
+    printf("|1. iya\n");
+    printf("|2. tidak\n\n: ");
+    scanf("%d", &validasi);
+    system("clear");
+    if(validasi == 1){
+        printf("|================================================|\n");
+        printf("|               Hasil Dari Perhitungan           |\n");
+        printf("|================================================|\n");
+        printf("|Nama: %s", name);
+        printf("|Kelompok: D1-1\n");
+        printf("|Tanggal:  %02d/%02d/%d\n", hari,bulan,tahun);
+        printf("|Nominal Hasil:Rp %d,- ", hasil);
+    }else if (validasi == 2)
+    {
+        printf("Apakah anda ingin mengulangi lagi ?\n");
+        printf("1. iya\n");
+        printf("2. tidak\n\n");
+        scanf(": %d", &ulangi);
+        if(ulangi == 1){
+            D1_1();
+        }else if (ulangi == 2)
+        {
+            outro();
+        }else {
+            printf("anda memasukkan angka yang salah");
+        }
+    }
+    else{
+        outro();
+    }
     return 0;
 }
-int D1_2(){
-    float debit_1, debit_2, debit;
-    int hasil;
 
+int D4_1(){
+    float debit_1, debit_2, debit; //belum di edit brooo
+    int hasil, ulangi, validasi;
+    int hours, minutes, seconds, hari, bulan, tahun;
+
+    time_t now;
+    time(&now);
+    struct tm *local = localtime(&now);
+    hari = local->tm_mday;            
+    bulan = local->tm_mon + 1;      
+    tahun = local->tm_year + 1900;   
+
+    char name[50];
     printf("|================================================|\n");
-    printf("Masukkan debit pemakaian air anda bulan lalu: ");
+    printf("|                 Masukkan Data Anda             |\n");
+    printf("|================================================|\n");
+    printf("Masukkan nama anda: ");
+    getchar();
+    fgets(name, sizeof(name), stdin);
+    system("clear");
+
+    printf("|====================================================|\n");
+    printf("|                 Masukkan Data Anda                 |\n");
+    printf("|====================================================|\n");
+    printf("|Masukkan debit pemakaian air anda bulan lalu (m^3): ");
     scanf("%f", &debit_1);
-    printf("Masukkan debit pemakaian air anda bulan ini: ");
+    printf("|Masukkan debit pemakaian air anda bulan ini (m^3): ");
     scanf("%f", &debit_2);
     system("clear");
     
     debit = debit_1 - debit_2;
 
-    if(debit >= 0 && debit<= 10){
-        hasil = debit * 2060;
+    if(hari < 10){
+        if(debit >= 0 && debit<= 10){
+        hasil = 10 * 1780;
     }else if (debit >= 11 && debit <= 20){
-        hasil = debit * 2340;
+        hasil = debit * 2060;
     }else if (debit > 20){
-        hasil = debit * 5940;
+        hasil = debit * 5880;
     }else {
         printf("masukkan nilai dengan benar");
     }
+    }else{
+        if(debit >= 0 && debit<= 10){
+        hasil = (10 * 1780) + 1000;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = (debit * 2060)+1000;
+    }else if (debit > 20){
+        hasil = (debit * 5880)+1000;
+    }else {
+        D1_1();
+    }
+    }
     
-    printf("|================================================|\n");
-    printf("|               Hasil Dari Perhitungan           |\n");
-    printf("|================================================|\n");
-    printf("|nama: \n");
-    printf("|tanggal: \n");
-    printf("|Nominal Hasil: %d ", hasil);
 
+    printf("|================================================|\n");
+    printf("|                     Data Anda                  |\n");
+    printf("|================================================|\n");
+    printf("|Nama: %s", name);
+    printf("|Kelompok: D1-1\n");
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_1);
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_2);
+    printf("|Apakah data di atas benar ? \n");
+    printf("|1. iya\n");
+    printf("|2. tidak\n\n: ");
+    scanf("%d", &validasi);
+    system("clear");
+    if(validasi == 1){
+        printf("|================================================|\n");
+        printf("|               Hasil Dari Perhitungan           |\n");
+        printf("|================================================|\n");
+        printf("|Nama: %s", name);
+        printf("|Kelompok: D1-1\n");
+        printf("|Tanggal:  %02d/%02d/%d\n", hari,bulan,tahun);
+        printf("|Nominal Hasil:Rp %d,- ", hasil);
+    }else if (validasi == 2)
+    {
+        printf("Apakah anda ingin mengulangi lagi ?\n");
+        printf("1. iya\n");
+        printf("2. tidak\n\n");
+        scanf(": %d", &ulangi);
+        if(ulangi == 1){
+            D1_1();
+        }else if (ulangi == 2)
+        {
+            outro();
+        }else {
+            printf("anda memasukkan angka yang salah");
+        }
+    }
+    else{
+        outro();
+    }
     return 0;
 }
 
-// int D2_1(){
-//     float debit_1, debit_2, debit;
-//     int hasil;
-//     char nama[20];
+int D4_2(){
+    float debit_1, debit_2, debit; //belum di edit brooo
+    int hasil, ulangi, validasi;
+    int hours, minutes, seconds, hari, bulan, tahun;
 
-//     printf("|================================================|\n");
-//     printf("masukkan nama anda: ");
-//     nama = nama();
-//     printf("Masukkan debit pemakaian air anda bulan lalu: ");
-//     scanf("%f", &debit_1);
-//     printf("Masukkan debit pemakaian air anda bulan ini: ");
-//     scanf("%f", &debit_2);
-//     system("clear");
+    time_t now;
+    time(&now);
+    struct tm *local = localtime(&now);
+    hari = local->tm_mday;            
+    bulan = local->tm_mon + 1;      
+    tahun = local->tm_year + 1900;   
 
+    char name[50];
+    printf("|================================================|\n");
+    printf("|                 Masukkan Data Anda             |\n");
+    printf("|================================================|\n");
+    printf("Masukkan nama anda: ");
+    getchar();
+    fgets(name, sizeof(name), stdin);
+    system("clear");
+
+    printf("|====================================================|\n");
+    printf("|                 Masukkan Data Anda                 |\n");
+    printf("|====================================================|\n");
+    printf("|Masukkan debit pemakaian air anda bulan lalu (m^3): ");
+    scanf("%f", &debit_1);
+    printf("|Masukkan debit pemakaian air anda bulan ini (m^3): ");
+    scanf("%f", &debit_2);
+    system("clear");
     
-//     debit = debit_1 - debit_2;
+    debit = debit_1 - debit_2;
 
-//     if(debit >= 0 && debit<= 10){
-//         hasil = debit * 2340;
-//     }else if (debit >= 11 && debit <= 20){
-//         hasil = debit * 2620;
-//     }else if (debit > 20){
-//         hasil = debit * 6000;
-//     }else {
-//         printf("masukkan nilai dengan benar");
-//     }
+    if(hari < 10){
+        if(debit >= 0 && debit<= 10){
+        hasil = 10 * 1780;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = debit * 2060;
+    }else if (debit > 20){
+        hasil = debit * 5880;
+    }else {
+        printf("masukkan nilai dengan benar");
+    }
+    }else{
+        if(debit >= 0 && debit<= 10){
+        hasil = (10 * 1780) + 1000;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = (debit * 2060)+1000;
+    }else if (debit > 20){
+        hasil = (debit * 5880)+1000;
+    }else {
+        D1_1();
+    }
+    }
     
-//     printf("|================================================|\n");
-//     printf("|               Hasil Dari Perhitungan           |\n");
-//     printf("|================================================|\n");
-//     printf("|nama: %s", nama);
-//     printf("|tanggal: \n");
-//     printf("|Nominal Hasil: %d ", hasil);
 
-//     return 0;
-// }
+    printf("|================================================|\n");
+    printf("|                     Data Anda                  |\n");
+    printf("|================================================|\n");
+    printf("|Nama: %s", name);
+    printf("|Kelompok: D1-1\n");
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_1);
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_2);
+    printf("|Apakah data di atas benar ? \n");
+    printf("|1. iya\n");
+    printf("|2. tidak\n\n: ");
+    scanf("%d", &validasi);
+    system("clear");
+    if(validasi == 1){
+        printf("|================================================|\n");
+        printf("|               Hasil Dari Perhitungan           |\n");
+        printf("|================================================|\n");
+        printf("|Nama: %s", name);
+        printf("|Kelompok: D1-1\n");
+        printf("|Tanggal:  %02d/%02d/%d\n", hari,bulan,tahun);
+        printf("|Nominal Hasil:Rp %d,- ", hasil);
+    }else if (validasi == 2)
+    {
+        printf("Apakah anda ingin mengulangi lagi ?\n");
+        printf("1. iya\n");
+        printf("2. tidak\n\n");
+        scanf(": %d", &ulangi);
+        if(ulangi == 1){
+            D1_1();
+        }else if (ulangi == 2)
+        {
+            outro();
+        }else {
+            printf("anda memasukkan angka yang salah");
+        }
+    }
+    else{
+        outro();
+    }
+    return 0;
+}
 
-// int D2_2(){
-//     float debit_1, debit_2, debit;
-//     int hasil;
+int D1_3(){
+    float debit_1, debit_2, debit; //belum di edit brooo
+    int hasil, ulangi, validasi;
+    int hours, minutes, seconds, hari, bulan, tahun;
 
-//     printf("|================================================|\n");
-//     printf("Masukkan debit pemakaian air anda bulan lalu: ");
-//     scanf("%f", &debit_1);
-//     printf("Masukkan debit pemakaian air anda bulan ini: ");
-//     scanf("%f", &debit_2);
-//     system("clear");
+    time_t now;
+    time(&now);
+    struct tm *local = localtime(&now);
+    hari = local->tm_mday;            
+    bulan = local->tm_mon + 1;      
+    tahun = local->tm_year + 1900;   
+
+    char name[50];
+    printf("|================================================|\n");
+    printf("|                 Masukkan Data Anda             |\n");
+    printf("|================================================|\n");
+    printf("Masukkan nama anda: ");
+    getchar();
+    fgets(name, sizeof(name), stdin);
+    system("clear");
+
+    printf("|====================================================|\n");
+    printf("|                 Masukkan Data Anda                 |\n");
+    printf("|====================================================|\n");
+    printf("|Masukkan debit pemakaian air anda bulan lalu (m^3): ");
+    scanf("%f", &debit_1);
+    printf("|Masukkan debit pemakaian air anda bulan ini (m^3): ");
+    scanf("%f", &debit_2);
+    system("clear");
     
-//     debit = debit_1 - debit_2;
+    debit = debit_1 - debit_2;
 
-//     if(debit >= 0 && debit<= 10){
-//         hasil = debit * 2620;
-//     }else if (debit >= 11 && debit <= 20){
-//         hasil = debit * 2900;
-//     }else if (debit > 20){
-//         hasil = debit * 6060;
-//     }else {
-//         printf("masukkan nilai dengan benar");
-//     }
+    if(hari < 10){
+        if(debit >= 0 && debit<= 10){
+        hasil = 10 * 1780;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = debit * 2060;
+    }else if (debit > 20){
+        hasil = debit * 5880;
+    }else {
+        printf("masukkan nilai dengan benar");
+    }
+    }else{
+        if(debit >= 0 && debit<= 10){
+        hasil = (10 * 1780) + 1000;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = (debit * 2060)+1000;
+    }else if (debit > 20){
+        hasil = (debit * 5880)+1000;
+    }else {
+        D1_1();
+    }
+    }
     
-//     printf("|================================================|\n");
-//     printf("|               Hasil Dari Perhitungan           |\n");
-//     printf("|================================================|\n");
-//     printf("|nama: \n");
-//     printf("|tanggal: \n");
-//     printf("|Nominal Hasil: %d ", hasil);
 
-//     return 0;
-// }
+    printf("|================================================|\n");
+    printf("|                     Data Anda                  |\n");
+    printf("|================================================|\n");
+    printf("|Nama: %s", name);
+    printf("|Kelompok: D1-1\n");
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_1);
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_2);
+    printf("|Apakah data di atas benar ? \n");
+    printf("|1. iya\n");
+    printf("|2. tidak\n\n: ");
+    scanf("%d", &validasi);
+    system("clear");
+    if(validasi == 1){
+        printf("|================================================|\n");
+        printf("|               Hasil Dari Perhitungan           |\n");
+        printf("|================================================|\n");
+        printf("|Nama: %s", name);
+        printf("|Kelompok: D1-1\n");
+        printf("|Tanggal:  %02d/%02d/%d\n", hari,bulan,tahun);
+        printf("|Nominal Hasil:Rp %d,- ", hasil);
+    }else if (validasi == 2)
+    {
+        printf("Apakah anda ingin mengulangi lagi ?\n");
+        printf("1. iya\n");
+        printf("2. tidak\n\n");
+        scanf(": %d", &ulangi);
+        if(ulangi == 1){
+            D1_1();
+        }else if (ulangi == 2)
+        {
+            outro();
+        }else {
+            printf("anda memasukkan angka yang salah");
+        }
+    }
+    else{
+        outro();
+    }
+    return 0;
+}
 
-// int D3_1(){
-//     float debit_1, debit_2, debit;
-//     int hasil;
+int D1_4(){
+    float debit_1, debit_2, debit; //belum di edit brooo
+    int hasil, ulangi, validasi;
+    int hours, minutes, seconds, hari, bulan, tahun;
 
-//     printf("|================================================|\n");
-//     printf("Masukkan debit pemakaian air anda bulan lalu: ");
-//     scanf("%f", &debit_1);
-//     printf("Masukkan debit pemakaian air anda bulan ini: ");
-//     scanf("%f", &debit_2);
-//     system("clear");
+    time_t now;
+    time(&now);
+    struct tm *local = localtime(&now);
+    hari = local->tm_mday;            
+    bulan = local->tm_mon + 1;      
+    tahun = local->tm_year + 1900;   
+
+    char name[50];
+    printf("|================================================|\n");
+    printf("|                 Masukkan Data Anda             |\n");
+    printf("|================================================|\n");
+    printf("Masukkan nama anda: ");
+    getchar();
+    fgets(name, sizeof(name), stdin);
+    system("clear");
+
+    printf("|====================================================|\n");
+    printf("|                 Masukkan Data Anda                 |\n");
+    printf("|====================================================|\n");
+    printf("|Masukkan debit pemakaian air anda bulan lalu (m^3): ");
+    scanf("%f", &debit_1);
+    printf("|Masukkan debit pemakaian air anda bulan ini (m^3): ");
+    scanf("%f", &debit_2);
+    system("clear");
     
-//     debit = debit_1 - debit_2;
+    debit = debit_1 - debit_2;
 
-//     if(debit >= 0 && debit<= 10){
-//         hasil = debit * 2060;
-//     }else if (debit >= 11 && debit <= 20){
-//         hasil = debit * 2340;
-//     }else if (debit > 20){
-//         hasil = debit * 5940;
-//     }else {
-//         printf("masukkan nilai dengan benar");
-//     }
+    if(hari < 10){
+        if(debit >= 0 && debit<= 10){
+        hasil = 10 * 1780;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = debit * 2060;
+    }else if (debit > 20){
+        hasil = debit * 5880;
+    }else {
+        printf("masukkan nilai dengan benar");
+    }
+    }else{
+        if(debit >= 0 && debit<= 10){
+        hasil = (10 * 1780) + 1000;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = (debit * 2060)+1000;
+    }else if (debit > 20){
+        hasil = (debit * 5880)+1000;
+    }else {
+        D1_1();
+    }
+    }
     
-//     printf("|================================================|\n");
-//     printf("|               Hasil Dari Perhitungan           |\n");
-//     printf("|================================================|\n");
-//     printf("|nama: \n");
-//     printf("|tanggal: \n");
-//     printf("|Nominal Hasil: %d ", hasil);
 
-//     return 0;
-// }
+    printf("|================================================|\n");
+    printf("|                     Data Anda                  |\n");
+    printf("|================================================|\n");
+    printf("|Nama: %s", name);
+    printf("|Kelompok: D1-1\n");
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_1);
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_2);
+    printf("|Apakah data di atas benar ? \n");
+    printf("|1. iya\n");
+    printf("|2. tidak\n\n: ");
+    scanf("%d", &validasi);
+    system("clear");
+    if(validasi == 1){
+        printf("|================================================|\n");
+        printf("|               Hasil Dari Perhitungan           |\n");
+        printf("|================================================|\n");
+        printf("|Nama: %s", name);
+        printf("|Kelompok: D1-1\n");
+        printf("|Tanggal:  %02d/%02d/%d\n", hari,bulan,tahun);
+        printf("|Nominal Hasil:Rp %d,- ", hasil);
+    }else if (validasi == 2)
+    {
+        printf("Apakah anda ingin mengulangi lagi ?\n");
+        printf("1. iya\n");
+        printf("2. tidak\n\n");
+        scanf(": %d", &ulangi);
+        if(ulangi == 1){
+            D1_1();
+        }else if (ulangi == 2)
+        {
+            outro();
+        }else {
+            printf("anda memasukkan angka yang salah");
+        }
+    }
+    else{
+        outro();
+    }
+    return 0;
+}
 
-// int D3_2(){
-//     float debit_1, debit_2, debit;
-//     int hasil;
+int D2_3(){
+    float debit_1, debit_2, debit; //belum di edit brooo
+    int hasil, ulangi, validasi;
+    int hours, minutes, seconds, hari, bulan, tahun;
 
-//     printf("|================================================|\n");
-//     printf("Masukkan debit pemakaian air anda bulan lalu: ");
-//     scanf("%f", &debit_1);
-//     printf("Masukkan debit pemakaian air anda bulan ini: ");
-//     scanf("%f", &debit_2);
-//     system("clear");
+    time_t now;
+    time(&now);
+    struct tm *local = localtime(&now);
+    hari = local->tm_mday;            
+    bulan = local->tm_mon + 1;      
+    tahun = local->tm_year + 1900;   
+
+    char name[50];
+    printf("|================================================|\n");
+    printf("|                 Masukkan Data Anda             |\n");
+    printf("|================================================|\n");
+    printf("Masukkan nama anda: ");
+    getchar();
+    fgets(name, sizeof(name), stdin);
+    system("clear");
+
+    printf("|====================================================|\n");
+    printf("|                 Masukkan Data Anda                 |\n");
+    printf("|====================================================|\n");
+    printf("|Masukkan debit pemakaian air anda bulan lalu (m^3): ");
+    scanf("%f", &debit_1);
+    printf("|Masukkan debit pemakaian air anda bulan ini (m^3): ");
+    scanf("%f", &debit_2);
+    system("clear");
     
-//     debit = debit_1 - debit_2;
+    debit = debit_1 - debit_2;
 
-//     if(debit >= 0 && debit<= 10){
-//         hasil = debit * 2060;
-//     }else if (debit >= 11 && debit <= 20){
-//         hasil = debit * 2340;
-//     }else if (debit > 20){
-//         hasil = debit * 5940;
-//     }else {
-//         printf("masukkan nilai dengan benar");
-//     }
+    if(hari < 10){
+        if(debit >= 0 && debit<= 10){
+        hasil = 10 * 1780;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = debit * 2060;
+    }else if (debit > 20){
+        hasil = debit * 5880;
+    }else {
+        printf("masukkan nilai dengan benar");
+    }
+    }else{
+        if(debit >= 0 && debit<= 10){
+        hasil = (10 * 1780) + 1000;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = (debit * 2060)+1000;
+    }else if (debit > 20){
+        hasil = (debit * 5880)+1000;
+    }else {
+        D1_1();
+    }
+    }
     
-//     printf("|================================================|\n");
-//     printf("|               Hasil Dari Perhitungan           |\n");
-//     printf("|================================================|\n");
-//     printf("|nama: \n");
-//     printf("|tanggal: \n");
-//     printf("|Nominal Hasil: %d ", hasil);
 
-//     return 0;
-// }
+    printf("|================================================|\n");
+    printf("|                     Data Anda                  |\n");
+    printf("|================================================|\n");
+    printf("|Nama: %s", name);
+    printf("|Kelompok: D1-1\n");
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_1);
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_2);
+    printf("|Apakah data di atas benar ? \n");
+    printf("|1. iya\n");
+    printf("|2. tidak\n\n: ");
+    scanf("%d", &validasi);
+    system("clear");
+    if(validasi == 1){
+        printf("|================================================|\n");
+        printf("|               Hasil Dari Perhitungan           |\n");
+        printf("|================================================|\n");
+        printf("|Nama: %s", name);
+        printf("|Kelompok: D1-1\n");
+        printf("|Tanggal:  %02d/%02d/%d\n", hari,bulan,tahun);
+        printf("|Nominal Hasil:Rp %d,- ", hasil);
+    }else if (validasi == 2)
+    {
+        printf("Apakah anda ingin mengulangi lagi ?\n");
+        printf("1. iya\n");
+        printf("2. tidak\n\n");
+        scanf(": %d", &ulangi);
+        if(ulangi == 1){
+            D1_1();
+        }else if (ulangi == 2)
+        {
+            outro();
+        }else {
+            printf("anda memasukkan angka yang salah");
+        }
+    }
+    else{
+        outro();
+    }
+    return 0;
+}
 
-// int D4_1(){
+int D2_4(){
+    float debit_1, debit_2, debit; //belum di edit brooo
+    int hasil, ulangi, validasi;
+    int hours, minutes, seconds, hari, bulan, tahun;
 
-// }
+    time_t now;
+    time(&now);
+    struct tm *local = localtime(&now);
+    hari = local->tm_mday;            
+    bulan = local->tm_mon + 1;      
+    tahun = local->tm_year + 1900;   
 
-// int D4_2(){
+    char name[50];
+    printf("|================================================|\n");
+    printf("|                 Masukkan Data Anda             |\n");
+    printf("|================================================|\n");
+    printf("Masukkan nama anda: ");
+    getchar();
+    fgets(name, sizeof(name), stdin);
+    system("clear");
 
-// }
-
-// int D1_3(){
-
-// }
-
-// int D1_4(){
+    printf("|====================================================|\n");
+    printf("|                 Masukkan Data Anda                 |\n");
+    printf("|====================================================|\n");
+    printf("|Masukkan debit pemakaian air anda bulan lalu (m^3): ");
+    scanf("%f", &debit_1);
+    printf("|Masukkan debit pemakaian air anda bulan ini (m^3): ");
+    scanf("%f", &debit_2);
+    system("clear");
     
-// }
+    debit = debit_1 - debit_2;
 
-// int D2_3(){
+    if(hari < 10){
+        if(debit >= 0 && debit<= 10){
+        hasil = 10 * 1780;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = debit * 2060;
+    }else if (debit > 20){
+        hasil = debit * 5880;
+    }else {
+        printf("masukkan nilai dengan benar");
+    }
+    }else{
+        if(debit >= 0 && debit<= 10){
+        hasil = (10 * 1780) + 1000;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = (debit * 2060)+1000;
+    }else if (debit > 20){
+        hasil = (debit * 5880)+1000;
+    }else {
+        D1_1();
+    }
+    }
     
-// }
 
-// int D2_4(){
-    
-// }
+    printf("|================================================|\n");
+    printf("|                     Data Anda                  |\n");
+    printf("|================================================|\n");
+    printf("|Nama: %s", name);
+    printf("|Kelompok: D1-1\n");
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_1);
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_2);
+    printf("|Apakah data di atas benar ? \n");
+    printf("|1. iya\n");
+    printf("|2. tidak\n\n: ");
+    scanf("%d", &validasi);
+    system("clear");
+    if(validasi == 1){
+        printf("|================================================|\n");
+        printf("|               Hasil Dari Perhitungan           |\n");
+        printf("|================================================|\n");
+        printf("|Nama: %s", name);
+        printf("|Kelompok: D1-1\n");
+        printf("|Tanggal:  %02d/%02d/%d\n", hari,bulan,tahun);
+        printf("|Nominal Hasil:Rp %d,- ", hasil);
+    }else if (validasi == 2)
+    {
+        printf("Apakah anda ingin mengulangi lagi ?\n");
+        printf("1. iya\n");
+        printf("2. tidak\n\n");
+        scanf(": %d", &ulangi);
+        if(ulangi == 1){
+            D1_1();
+        }else if (ulangi == 2)
+        {
+            outro();
+        }else {
+            printf("anda memasukkan angka yang salah");
+        }
+    }
+    else{
+        outro();
+    }
+    return 0;
+}
 
-// int D3_3(){
-    
-// }
+int D3_3(){
+    float debit_1, debit_2, debit; //belum di edit brooo
+    int hasil, ulangi, validasi;
+    int hours, minutes, seconds, hari, bulan, tahun;
 
-// int D3_4(){
-    
-// }
-// int D4_3(){
-    
-// }
+    time_t now;
+    time(&now);
+    struct tm *local = localtime(&now);
+    hari = local->tm_mday;            
+    bulan = local->tm_mon + 1;      
+    tahun = local->tm_year + 1900;   
 
-// int D4_4(){
-    
-// }
+    char name[50];
+    printf("|================================================|\n");
+    printf("|                 Masukkan Data Anda             |\n");
+    printf("|================================================|\n");
+    printf("Masukkan nama anda: ");
+    getchar();
+    fgets(name, sizeof(name), stdin);
+    system("clear");
 
-// int D5_1(){
+    printf("|====================================================|\n");
+    printf("|                 Masukkan Data Anda                 |\n");
+    printf("|====================================================|\n");
+    printf("|Masukkan debit pemakaian air anda bulan lalu (m^3): ");
+    scanf("%f", &debit_1);
+    printf("|Masukkan debit pemakaian air anda bulan ini (m^3): ");
+    scanf("%f", &debit_2);
+    system("clear");
     
-// }
+    debit = debit_1 - debit_2;
 
-// int D5_2(){
+    if(hari < 10){
+        if(debit >= 0 && debit<= 10){
+        hasil = 10 * 1780;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = debit * 2060;
+    }else if (debit > 20){
+        hasil = debit * 5880;
+    }else {
+        printf("masukkan nilai dengan benar");
+    }
+    }else{
+        if(debit >= 0 && debit<= 10){
+        hasil = (10 * 1780) + 1000;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = (debit * 2060)+1000;
+    }else if (debit > 20){
+        hasil = (debit * 5880)+1000;
+    }else {
+        D1_1();
+    }
+    }
     
-// }
 
-// int D5_3(){
-    
-// }
+    printf("|================================================|\n");
+    printf("|                     Data Anda                  |\n");
+    printf("|================================================|\n");
+    printf("|Nama: %s", name);
+    printf("|Kelompok: D1-1\n");
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_1);
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_2);
+    printf("|Apakah data di atas benar ? \n");
+    printf("|1. iya\n");
+    printf("|2. tidak\n\n: ");
+    scanf("%d", &validasi);
+    system("clear");
+    if(validasi == 1){
+        printf("|================================================|\n");
+        printf("|               Hasil Dari Perhitungan           |\n");
+        printf("|================================================|\n");
+        printf("|Nama: %s", name);
+        printf("|Kelompok: D1-1\n");
+        printf("|Tanggal:  %02d/%02d/%d\n", hari,bulan,tahun);
+        printf("|Nominal Hasil:Rp %d,- ", hasil);
+    }else if (validasi == 2)
+    {
+        printf("Apakah anda ingin mengulangi lagi ?\n");
+        printf("1. iya\n");
+        printf("2. tidak\n\n");
+        scanf(": %d", &ulangi);
+        if(ulangi == 1){
+            D1_1();
+        }else if (ulangi == 2)
+        {
+            outro();
+        }else {
+            printf("anda memasukkan angka yang salah");
+        }
+    }
+    else{
+        outro();
+    }
+    return 0;
+}
 
-// int D5_4(){
-    
-// }
+int D3_4(){
+    float debit_1, debit_2, debit; //belum di edit brooo
+    int hasil, ulangi, validasi;
+    int hours, minutes, seconds, hari, bulan, tahun;
 
-// //niaga 
-// int E1_1(){
-    
-// }
+    time_t now;
+    time(&now);
+    struct tm *local = localtime(&now);
+    hari = local->tm_mday;            
+    bulan = local->tm_mon + 1;      
+    tahun = local->tm_year + 1900;   
 
-// int E1_2(){
-    
-// }
+    char name[50];
+    printf("|================================================|\n");
+    printf("|                 Masukkan Data Anda             |\n");
+    printf("|================================================|\n");
+    printf("Masukkan nama anda: ");
+    getchar();
+    fgets(name, sizeof(name), stdin);
+    system("clear");
 
-// int E1_3(){
+    printf("|====================================================|\n");
+    printf("|                 Masukkan Data Anda                 |\n");
+    printf("|====================================================|\n");
+    printf("|Masukkan debit pemakaian air anda bulan lalu (m^3): ");
+    scanf("%f", &debit_1);
+    printf("|Masukkan debit pemakaian air anda bulan ini (m^3): ");
+    scanf("%f", &debit_2);
+    system("clear");
     
-// }
+    debit = debit_1 - debit_2;
 
-// int E1_4(){
+    if(hari < 10){
+        if(debit >= 0 && debit<= 10){
+        hasil = 10 * 1780;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = debit * 2060;
+    }else if (debit > 20){
+        hasil = debit * 5880;
+    }else {
+        printf("masukkan nilai dengan benar");
+    }
+    }else{
+        if(debit >= 0 && debit<= 10){
+        hasil = (10 * 1780) + 1000;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = (debit * 2060)+1000;
+    }else if (debit > 20){
+        hasil = (debit * 5880)+1000;
+    }else {
+        D1_1();
+    }
+    }
     
-// }
 
-// int E2_1(){
-    
-// }
+    printf("|================================================|\n");
+    printf("|                     Data Anda                  |\n");
+    printf("|================================================|\n");
+    printf("|Nama: %s", name);
+    printf("|Kelompok: D1-1\n");
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_1);
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_2);
+    printf("|Apakah data di atas benar ? \n");
+    printf("|1. iya\n");
+    printf("|2. tidak\n\n: ");
+    scanf("%d", &validasi);
+    system("clear");
+    if(validasi == 1){
+        printf("|================================================|\n");
+        printf("|               Hasil Dari Perhitungan           |\n");
+        printf("|================================================|\n");
+        printf("|Nama: %s", name);
+        printf("|Kelompok: D1-1\n");
+        printf("|Tanggal:  %02d/%02d/%d\n", hari,bulan,tahun);
+        printf("|Nominal Hasil:Rp %d,- ", hasil);
+    }else if (validasi == 2)
+    {
+        printf("Apakah anda ingin mengulangi lagi ?\n");
+        printf("1. iya\n");
+        printf("2. tidak\n\n");
+        scanf(": %d", &ulangi);
+        if(ulangi == 1){
+            D1_1();
+        }else if (ulangi == 2)
+        {
+            outro();
+        }else {
+            printf("anda memasukkan angka yang salah");
+        }
+    }
+    else{
+        outro();
+    }
+    return 0;
+}
+int D4_3(){
+    float debit_1, debit_2, debit; //belum di edit brooo
+    int hasil, ulangi, validasi;
+    int hours, minutes, seconds, hari, bulan, tahun;
 
-// int E2_2(){
-    
-// }
+    time_t now;
+    time(&now);
+    struct tm *local = localtime(&now);
+    hari = local->tm_mday;            
+    bulan = local->tm_mon + 1;      
+    tahun = local->tm_year + 1900;   
 
-// int E2_3(){
-    
-// }
+    char name[50];
+    printf("|================================================|\n");
+    printf("|                 Masukkan Data Anda             |\n");
+    printf("|================================================|\n");
+    printf("Masukkan nama anda: ");
+    getchar();
+    fgets(name, sizeof(name), stdin);
+    system("clear");
 
-// int E2_4(){
+    printf("|====================================================|\n");
+    printf("|                 Masukkan Data Anda                 |\n");
+    printf("|====================================================|\n");
+    printf("|Masukkan debit pemakaian air anda bulan lalu (m^3): ");
+    scanf("%f", &debit_1);
+    printf("|Masukkan debit pemakaian air anda bulan ini (m^3): ");
+    scanf("%f", &debit_2);
+    system("clear");
     
-// }
+    debit = debit_1 - debit_2;
 
-// int E3_1(){
+    if(hari < 10){
+        if(debit >= 0 && debit<= 10){
+        hasil = 10 * 1780;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = debit * 2060;
+    }else if (debit > 20){
+        hasil = debit * 5880;
+    }else {
+        printf("masukkan nilai dengan benar");
+    }
+    }else{
+        if(debit >= 0 && debit<= 10){
+        hasil = (10 * 1780) + 1000;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = (debit * 2060)+1000;
+    }else if (debit > 20){
+        hasil = (debit * 5880)+1000;
+    }else {
+        D1_1();
+    }
+    }
     
-// }
 
-// int E3_2(){
-    
-// }
+    printf("|================================================|\n");
+    printf("|                     Data Anda                  |\n");
+    printf("|================================================|\n");
+    printf("|Nama: %s", name);
+    printf("|Kelompok: D1-1\n");
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_1);
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_2);
+    printf("|Apakah data di atas benar ? \n");
+    printf("|1. iya\n");
+    printf("|2. tidak\n\n: ");
+    scanf("%d", &validasi);
+    system("clear");
+    if(validasi == 1){
+        printf("|================================================|\n");
+        printf("|               Hasil Dari Perhitungan           |\n");
+        printf("|================================================|\n");
+        printf("|Nama: %s", name);
+        printf("|Kelompok: D1-1\n");
+        printf("|Tanggal:  %02d/%02d/%d\n", hari,bulan,tahun);
+        printf("|Nominal Hasil:Rp %d,- ", hasil);
+    }else if (validasi == 2)
+    {
+        printf("Apakah anda ingin mengulangi lagi ?\n");
+        printf("1. iya\n");
+        printf("2. tidak\n\n");
+        scanf(": %d", &ulangi);
+        if(ulangi == 1){
+            D1_1();
+        }else if (ulangi == 2)
+        {
+            outro();
+        }else {
+            printf("anda memasukkan angka yang salah");
+        }
+    }
+    else{
+        outro();
+    }
+    return 0;
+}
 
-// int E3_3(){
-    
-// }
+int D4_4(){
+    float debit_1, debit_2, debit; //belum di edit brooo
+    int hasil, ulangi, validasi;
+    int hours, minutes, seconds, hari, bulan, tahun;
 
-// int E3_4(){
+    time_t now;
+    time(&now);
+    struct tm *local = localtime(&now);
+    hari = local->tm_mday;            
+    bulan = local->tm_mon + 1;      
+    tahun = local->tm_year + 1900;   
+
+    char name[50];
+    printf("|================================================|\n");
+    printf("|                 Masukkan Data Anda             |\n");
+    printf("|================================================|\n");
+    printf("Masukkan nama anda: ");
+    getchar();
+    fgets(name, sizeof(name), stdin);
+    system("clear");
+
+    printf("|====================================================|\n");
+    printf("|                 Masukkan Data Anda                 |\n");
+    printf("|====================================================|\n");
+    printf("|Masukkan debit pemakaian air anda bulan lalu (m^3): ");
+    scanf("%f", &debit_1);
+    printf("|Masukkan debit pemakaian air anda bulan ini (m^3): ");
+    scanf("%f", &debit_2);
+    system("clear");
     
-// }
+    debit = debit_1 - debit_2;
+
+    if(hari < 10){
+        if(debit >= 0 && debit<= 10){
+        hasil = 10 * 1780;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = debit * 2060;
+    }else if (debit > 20){
+        hasil = debit * 5880;
+    }else {
+        printf("masukkan nilai dengan benar");
+    }
+    }else{
+        if(debit >= 0 && debit<= 10){
+        hasil = (10 * 1780) + 1000;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = (debit * 2060)+1000;
+    }else if (debit > 20){
+        hasil = (debit * 5880)+1000;
+    }else {
+        D1_1();
+    }
+    }
+    
+
+    printf("|================================================|\n");
+    printf("|                     Data Anda                  |\n");
+    printf("|================================================|\n");
+    printf("|Nama: %s", name);
+    printf("|Kelompok: D1-1\n");
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_1);
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_2);
+    printf("|Apakah data di atas benar ? \n");
+    printf("|1. iya\n");
+    printf("|2. tidak\n\n: ");
+    scanf("%d", &validasi);
+    system("clear");
+    if(validasi == 1){
+        printf("|================================================|\n");
+        printf("|               Hasil Dari Perhitungan           |\n");
+        printf("|================================================|\n");
+        printf("|Nama: %s", name);
+        printf("|Kelompok: D1-1\n");
+        printf("|Tanggal:  %02d/%02d/%d\n", hari,bulan,tahun);
+        printf("|Nominal Hasil:Rp %d,- ", hasil);
+    }else if (validasi == 2)
+    {
+        printf("Apakah anda ingin mengulangi lagi ?\n");
+        printf("1. iya\n");
+        printf("2. tidak\n\n");
+        scanf(": %d", &ulangi);
+        if(ulangi == 1){
+            D1_1();
+        }else if (ulangi == 2)
+        {
+            outro();
+        }else {
+            printf("anda memasukkan angka yang salah");
+        }
+    }
+    else{
+        outro();
+    }
+    return 0;
+}
+
+int D5_1(){
+    float debit_1, debit_2, debit; //belum di edit brooo
+    int hasil, ulangi, validasi;
+    int hours, minutes, seconds, hari, bulan, tahun;
+
+    time_t now;
+    time(&now);
+    struct tm *local = localtime(&now);
+    hari = local->tm_mday;            
+    bulan = local->tm_mon + 1;      
+    tahun = local->tm_year + 1900;   
+
+    char name[50];
+    printf("|================================================|\n");
+    printf("|                 Masukkan Data Anda             |\n");
+    printf("|================================================|\n");
+    printf("Masukkan nama anda: ");
+    getchar();
+    fgets(name, sizeof(name), stdin);
+    system("clear");
+
+    printf("|====================================================|\n");
+    printf("|                 Masukkan Data Anda                 |\n");
+    printf("|====================================================|\n");
+    printf("|Masukkan debit pemakaian air anda bulan lalu (m^3): ");
+    scanf("%f", &debit_1);
+    printf("|Masukkan debit pemakaian air anda bulan ini (m^3): ");
+    scanf("%f", &debit_2);
+    system("clear");
+    
+    debit = debit_1 - debit_2;
+
+    if(hari < 10){
+        if(debit >= 0 && debit<= 10){
+        hasil = 10 * 1780;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = debit * 2060;
+    }else if (debit > 20){
+        hasil = debit * 5880;
+    }else {
+        printf("masukkan nilai dengan benar");
+    }
+    }else{
+        if(debit >= 0 && debit<= 10){
+        hasil = (10 * 1780) + 1000;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = (debit * 2060)+1000;
+    }else if (debit > 20){
+        hasil = (debit * 5880)+1000;
+    }else {
+        D1_1();
+    }
+    }
+    
+
+    printf("|================================================|\n");
+    printf("|                     Data Anda                  |\n");
+    printf("|================================================|\n");
+    printf("|Nama: %s", name);
+    printf("|Kelompok: D1-1\n");
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_1);
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_2);
+    printf("|Apakah data di atas benar ? \n");
+    printf("|1. iya\n");
+    printf("|2. tidak\n\n: ");
+    scanf("%d", &validasi);
+    system("clear");
+    if(validasi == 1){
+        printf("|================================================|\n");
+        printf("|               Hasil Dari Perhitungan           |\n");
+        printf("|================================================|\n");
+        printf("|Nama: %s", name);
+        printf("|Kelompok: D1-1\n");
+        printf("|Tanggal:  %02d/%02d/%d\n", hari,bulan,tahun);
+        printf("|Nominal Hasil:Rp %d,- ", hasil);
+    }else if (validasi == 2)
+    {
+        printf("Apakah anda ingin mengulangi lagi ?\n");
+        printf("1. iya\n");
+        printf("2. tidak\n\n");
+        scanf(": %d", &ulangi);
+        if(ulangi == 1){
+            D1_1();
+        }else if (ulangi == 2)
+        {
+            outro();
+        }else {
+            printf("anda memasukkan angka yang salah");
+        }
+    }
+    else{
+        outro();
+    }
+    return 0;
+}
+
+int D5_2(){
+    float debit_1, debit_2, debit; //belum di edit brooo
+    int hasil, ulangi, validasi;
+    int hours, minutes, seconds, hari, bulan, tahun;
+
+    time_t now;
+    time(&now);
+    struct tm *local = localtime(&now);
+    hari = local->tm_mday;            
+    bulan = local->tm_mon + 1;      
+    tahun = local->tm_year + 1900;   
+
+    char name[50];
+    printf("|================================================|\n");
+    printf("|                 Masukkan Data Anda             |\n");
+    printf("|================================================|\n");
+    printf("Masukkan nama anda: ");
+    getchar();
+    fgets(name, sizeof(name), stdin);
+    system("clear");
+
+    printf("|====================================================|\n");
+    printf("|                 Masukkan Data Anda                 |\n");
+    printf("|====================================================|\n");
+    printf("|Masukkan debit pemakaian air anda bulan lalu (m^3): ");
+    scanf("%f", &debit_1);
+    printf("|Masukkan debit pemakaian air anda bulan ini (m^3): ");
+    scanf("%f", &debit_2);
+    system("clear");
+    
+    debit = debit_1 - debit_2;
+
+    if(hari < 10){
+        if(debit >= 0 && debit<= 10){
+        hasil = 10 * 1780;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = debit * 2060;
+    }else if (debit > 20){
+        hasil = debit * 5880;
+    }else {
+        printf("masukkan nilai dengan benar");
+    }
+    }else{
+        if(debit >= 0 && debit<= 10){
+        hasil = (10 * 1780) + 1000;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = (debit * 2060)+1000;
+    }else if (debit > 20){
+        hasil = (debit * 5880)+1000;
+    }else {
+        D1_1();
+    }
+    }
+    
+
+    printf("|================================================|\n");
+    printf("|                     Data Anda                  |\n");
+    printf("|================================================|\n");
+    printf("|Nama: %s", name);
+    printf("|Kelompok: D1-1\n");
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_1);
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_2);
+    printf("|Apakah data di atas benar ? \n");
+    printf("|1. iya\n");
+    printf("|2. tidak\n\n: ");
+    scanf("%d", &validasi);
+    system("clear");
+    if(validasi == 1){
+        printf("|================================================|\n");
+        printf("|               Hasil Dari Perhitungan           |\n");
+        printf("|================================================|\n");
+        printf("|Nama: %s", name);
+        printf("|Kelompok: D1-1\n");
+        printf("|Tanggal:  %02d/%02d/%d\n", hari,bulan,tahun);
+        printf("|Nominal Hasil:Rp %d,- ", hasil);
+    }else if (validasi == 2)
+    {
+        printf("Apakah anda ingin mengulangi lagi ?\n");
+        printf("1. iya\n");
+        printf("2. tidak\n\n");
+        scanf(": %d", &ulangi);
+        if(ulangi == 1){
+            D1_1();
+        }else if (ulangi == 2)
+        {
+            outro();
+        }else {
+            printf("anda memasukkan angka yang salah");
+        }
+    }
+    else{
+        outro();
+    }
+    return 0;
+}
+
+int D5_3(){
+    float debit_1, debit_2, debit; //belum di edit brooo
+    int hasil, ulangi, validasi;
+    int hours, minutes, seconds, hari, bulan, tahun;
+
+    time_t now;
+    time(&now);
+    struct tm *local = localtime(&now);
+    hari = local->tm_mday;            
+    bulan = local->tm_mon + 1;      
+    tahun = local->tm_year + 1900;   
+
+    char name[50];
+    printf("|================================================|\n");
+    printf("|                 Masukkan Data Anda             |\n");
+    printf("|================================================|\n");
+    printf("Masukkan nama anda: ");
+    getchar();
+    fgets(name, sizeof(name), stdin);
+    system("clear");
+
+    printf("|====================================================|\n");
+    printf("|                 Masukkan Data Anda                 |\n");
+    printf("|====================================================|\n");
+    printf("|Masukkan debit pemakaian air anda bulan lalu (m^3): ");
+    scanf("%f", &debit_1);
+    printf("|Masukkan debit pemakaian air anda bulan ini (m^3): ");
+    scanf("%f", &debit_2);
+    system("clear");
+    
+    debit = debit_1 - debit_2;
+
+    if(hari < 10){
+        if(debit >= 0 && debit<= 10){
+        hasil = 10 * 1780;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = debit * 2060;
+    }else if (debit > 20){
+        hasil = debit * 5880;
+    }else {
+        printf("masukkan nilai dengan benar");
+    }
+    }else{
+        if(debit >= 0 && debit<= 10){
+        hasil = (10 * 1780) + 1000;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = (debit * 2060)+1000;
+    }else if (debit > 20){
+        hasil = (debit * 5880)+1000;
+    }else {
+        D1_1();
+    }
+    }
+    
+
+    printf("|================================================|\n");
+    printf("|                     Data Anda                  |\n");
+    printf("|================================================|\n");
+    printf("|Nama: %s", name);
+    printf("|Kelompok: D1-1\n");
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_1);
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_2);
+    printf("|Apakah data di atas benar ? \n");
+    printf("|1. iya\n");
+    printf("|2. tidak\n\n: ");
+    scanf("%d", &validasi);
+    system("clear");
+    if(validasi == 1){
+        printf("|================================================|\n");
+        printf("|               Hasil Dari Perhitungan           |\n");
+        printf("|================================================|\n");
+        printf("|Nama: %s", name);
+        printf("|Kelompok: D1-1\n");
+        printf("|Tanggal:  %02d/%02d/%d\n", hari,bulan,tahun);
+        printf("|Nominal Hasil:Rp %d,- ", hasil);
+    }else if (validasi == 2)
+    {
+        printf("Apakah anda ingin mengulangi lagi ?\n");
+        printf("1. iya\n");
+        printf("2. tidak\n\n");
+        scanf(": %d", &ulangi);
+        if(ulangi == 1){
+            D1_1();
+        }else if (ulangi == 2)
+        {
+            outro();
+        }else {
+            printf("anda memasukkan angka yang salah");
+        }
+    }
+    else{
+        outro();
+    }
+    return 0;
+}
+
+int D5_4(){
+    float debit_1, debit_2, debit; //belum di edit brooo
+    int hasil, ulangi, validasi;
+    int hours, minutes, seconds, hari, bulan, tahun;
+
+    time_t now;
+    time(&now);
+    struct tm *local = localtime(&now);
+    hari = local->tm_mday;            
+    bulan = local->tm_mon + 1;      
+    tahun = local->tm_year + 1900;   
+
+    char name[50];
+    printf("|================================================|\n");
+    printf("|                 Masukkan Data Anda             |\n");
+    printf("|================================================|\n");
+    printf("Masukkan nama anda: ");
+    getchar();
+    fgets(name, sizeof(name), stdin);
+    system("clear");
+
+    printf("|====================================================|\n");
+    printf("|                 Masukkan Data Anda                 |\n");
+    printf("|====================================================|\n");
+    printf("|Masukkan debit pemakaian air anda bulan lalu (m^3): ");
+    scanf("%f", &debit_1);
+    printf("|Masukkan debit pemakaian air anda bulan ini (m^3): ");
+    scanf("%f", &debit_2);
+    system("clear");
+    
+    debit = debit_1 - debit_2;
+
+    if(hari < 10){
+        if(debit >= 0 && debit<= 10){
+        hasil = 10 * 1780;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = debit * 2060;
+    }else if (debit > 20){
+        hasil = debit * 5880;
+    }else {
+        printf("masukkan nilai dengan benar");
+    }
+    }else{
+        if(debit >= 0 && debit<= 10){
+        hasil = (10 * 1780) + 1000;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = (debit * 2060)+1000;
+    }else if (debit > 20){
+        hasil = (debit * 5880)+1000;
+    }else {
+        D1_1();
+    }
+    }
+    
+
+    printf("|================================================|\n");
+    printf("|                     Data Anda                  |\n");
+    printf("|================================================|\n");
+    printf("|Nama: %s", name);
+    printf("|Kelompok: D1-1\n");
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_1);
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_2);
+    printf("|Apakah data di atas benar ? \n");
+    printf("|1. iya\n");
+    printf("|2. tidak\n\n: ");
+    scanf("%d", &validasi);
+    system("clear");
+    if(validasi == 1){
+        printf("|================================================|\n");
+        printf("|               Hasil Dari Perhitungan           |\n");
+        printf("|================================================|\n");
+        printf("|Nama: %s", name);
+        printf("|Kelompok: D1-1\n");
+        printf("|Tanggal:  %02d/%02d/%d\n", hari,bulan,tahun);
+        printf("|Nominal Hasil:Rp %d,- ", hasil);
+    }else if (validasi == 2)
+    {
+        printf("Apakah anda ingin mengulangi lagi ?\n");
+        printf("1. iya\n");
+        printf("2. tidak\n\n");
+        scanf(": %d", &ulangi);
+        if(ulangi == 1){
+            D1_1();
+        }else if (ulangi == 2)
+        {
+            outro();
+        }else {
+            printf("anda memasukkan angka yang salah");
+        }
+    }
+    else{
+        outro();
+    }
+    return 0;
+}
+
+//niaga 
+int E1_1(){
+    float debit_1, debit_2, debit; //belum di edit brooo
+    int hasil, ulangi, validasi;
+    int hours, minutes, seconds, hari, bulan, tahun;
+
+    time_t now;
+    time(&now);
+    struct tm *local = localtime(&now);
+    hari = local->tm_mday;            
+    bulan = local->tm_mon + 1;      
+    tahun = local->tm_year + 1900;   
+
+    char name[50];
+    printf("|================================================|\n");
+    printf("|                 Masukkan Data Anda             |\n");
+    printf("|================================================|\n");
+    printf("Masukkan nama anda: ");
+    getchar();
+    fgets(name, sizeof(name), stdin);
+    system("clear");
+
+    printf("|====================================================|\n");
+    printf("|                 Masukkan Data Anda                 |\n");
+    printf("|====================================================|\n");
+    printf("|Masukkan debit pemakaian air anda bulan lalu (m^3): ");
+    scanf("%f", &debit_1);
+    printf("|Masukkan debit pemakaian air anda bulan ini (m^3): ");
+    scanf("%f", &debit_2);
+    system("clear");
+    
+    debit = debit_1 - debit_2;
+
+    if(hari < 10){
+        if(debit >= 0 && debit<= 10){
+        hasil = 10 * 1780;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = debit * 2060;
+    }else if (debit > 20){
+        hasil = debit * 5880;
+    }else {
+        printf("masukkan nilai dengan benar");
+    }
+    }else{
+        if(debit >= 0 && debit<= 10){
+        hasil = (10 * 1780) + 1000;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = (debit * 2060)+1000;
+    }else if (debit > 20){
+        hasil = (debit * 5880)+1000;
+    }else {
+        D1_1();
+    }
+    }
+    
+
+    printf("|================================================|\n");
+    printf("|                     Data Anda                  |\n");
+    printf("|================================================|\n");
+    printf("|Nama: %s", name);
+    printf("|Kelompok: D1-1\n");
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_1);
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_2);
+    printf("|Apakah data di atas benar ? \n");
+    printf("|1. iya\n");
+    printf("|2. tidak\n\n: ");
+    scanf("%d", &validasi);
+    system("clear");
+    if(validasi == 1){
+        printf("|================================================|\n");
+        printf("|               Hasil Dari Perhitungan           |\n");
+        printf("|================================================|\n");
+        printf("|Nama: %s", name);
+        printf("|Kelompok: D1-1\n");
+        printf("|Tanggal:  %02d/%02d/%d\n", hari,bulan,tahun);
+        printf("|Nominal Hasil:Rp %d,- ", hasil);
+    }else if (validasi == 2)
+    {
+        printf("Apakah anda ingin mengulangi lagi ?\n");
+        printf("1. iya\n");
+        printf("2. tidak\n\n");
+        scanf(": %d", &ulangi);
+        if(ulangi == 1){
+            D1_1();
+        }else if (ulangi == 2)
+        {
+            outro();
+        }else {
+            printf("anda memasukkan angka yang salah");
+        }
+    }
+    else{
+        outro();
+    }
+    return 0;
+}
+
+int E1_2(){
+    float debit_1, debit_2, debit; //belum di edit brooo
+    int hasil, ulangi, validasi;
+    int hours, minutes, seconds, hari, bulan, tahun;
+
+    time_t now;
+    time(&now);
+    struct tm *local = localtime(&now);
+    hari = local->tm_mday;            
+    bulan = local->tm_mon + 1;      
+    tahun = local->tm_year + 1900;   
+
+    char name[50];
+    printf("|================================================|\n");
+    printf("|                 Masukkan Data Anda             |\n");
+    printf("|================================================|\n");
+    printf("Masukkan nama anda: ");
+    getchar();
+    fgets(name, sizeof(name), stdin);
+    system("clear");
+
+    printf("|====================================================|\n");
+    printf("|                 Masukkan Data Anda                 |\n");
+    printf("|====================================================|\n");
+    printf("|Masukkan debit pemakaian air anda bulan lalu (m^3): ");
+    scanf("%f", &debit_1);
+    printf("|Masukkan debit pemakaian air anda bulan ini (m^3): ");
+    scanf("%f", &debit_2);
+    system("clear");
+    
+    debit = debit_1 - debit_2;
+
+    if(hari < 10){
+        if(debit >= 0 && debit<= 10){
+        hasil = 10 * 1780;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = debit * 2060;
+    }else if (debit > 20){
+        hasil = debit * 5880;
+    }else {
+        printf("masukkan nilai dengan benar");
+    }
+    }else{
+        if(debit >= 0 && debit<= 10){
+        hasil = (10 * 1780) + 1000;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = (debit * 2060)+1000;
+    }else if (debit > 20){
+        hasil = (debit * 5880)+1000;
+    }else {
+        D1_1();
+    }
+    }
+    
+
+    printf("|================================================|\n");
+    printf("|                     Data Anda                  |\n");
+    printf("|================================================|\n");
+    printf("|Nama: %s", name);
+    printf("|Kelompok: D1-1\n");
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_1);
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_2);
+    printf("|Apakah data di atas benar ? \n");
+    printf("|1. iya\n");
+    printf("|2. tidak\n\n: ");
+    scanf("%d", &validasi);
+    system("clear");
+    if(validasi == 1){
+        printf("|================================================|\n");
+        printf("|               Hasil Dari Perhitungan           |\n");
+        printf("|================================================|\n");
+        printf("|Nama: %s", name);
+        printf("|Kelompok: D1-1\n");
+        printf("|Tanggal:  %02d/%02d/%d\n", hari,bulan,tahun);
+        printf("|Nominal Hasil:Rp %d,- ", hasil);
+    }else if (validasi == 2)
+    {
+        printf("Apakah anda ingin mengulangi lagi ?\n");
+        printf("1. iya\n");
+        printf("2. tidak\n\n");
+        scanf(": %d", &ulangi);
+        if(ulangi == 1){
+            D1_1();
+        }else if (ulangi == 2)
+        {
+            outro();
+        }else {
+            printf("anda memasukkan angka yang salah");
+        }
+    }
+    else{
+        outro();
+    }
+    return 0;
+}
+
+int E1_3(){
+    float debit_1, debit_2, debit; //belum di edit brooo
+    int hasil, ulangi, validasi;
+    int hours, minutes, seconds, hari, bulan, tahun;
+
+    time_t now;
+    time(&now);
+    struct tm *local = localtime(&now);
+    hari = local->tm_mday;            
+    bulan = local->tm_mon + 1;      
+    tahun = local->tm_year + 1900;   
+
+    char name[50];
+    printf("|================================================|\n");
+    printf("|                 Masukkan Data Anda             |\n");
+    printf("|================================================|\n");
+    printf("Masukkan nama anda: ");
+    getchar();
+    fgets(name, sizeof(name), stdin);
+    system("clear");
+
+    printf("|====================================================|\n");
+    printf("|                 Masukkan Data Anda                 |\n");
+    printf("|====================================================|\n");
+    printf("|Masukkan debit pemakaian air anda bulan lalu (m^3): ");
+    scanf("%f", &debit_1);
+    printf("|Masukkan debit pemakaian air anda bulan ini (m^3): ");
+    scanf("%f", &debit_2);
+    system("clear");
+    
+    debit = debit_1 - debit_2;
+
+    if(hari < 10){
+        if(debit >= 0 && debit<= 10){
+        hasil = 10 * 1780;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = debit * 2060;
+    }else if (debit > 20){
+        hasil = debit * 5880;
+    }else {
+        printf("masukkan nilai dengan benar");
+    }
+    }else{
+        if(debit >= 0 && debit<= 10){
+        hasil = (10 * 1780) + 1000;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = (debit * 2060)+1000;
+    }else if (debit > 20){
+        hasil = (debit * 5880)+1000;
+    }else {
+        D1_1();
+    }
+    }
+    
+
+    printf("|================================================|\n");
+    printf("|                     Data Anda                  |\n");
+    printf("|================================================|\n");
+    printf("|Nama: %s", name);
+    printf("|Kelompok: D1-1\n");
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_1);
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_2);
+    printf("|Apakah data di atas benar ? \n");
+    printf("|1. iya\n");
+    printf("|2. tidak\n\n: ");
+    scanf("%d", &validasi);
+    system("clear");
+    if(validasi == 1){
+        printf("|================================================|\n");
+        printf("|               Hasil Dari Perhitungan           |\n");
+        printf("|================================================|\n");
+        printf("|Nama: %s", name);
+        printf("|Kelompok: D1-1\n");
+        printf("|Tanggal:  %02d/%02d/%d\n", hari,bulan,tahun);
+        printf("|Nominal Hasil:Rp %d,- ", hasil);
+    }else if (validasi == 2)
+    {
+        printf("Apakah anda ingin mengulangi lagi ?\n");
+        printf("1. iya\n");
+        printf("2. tidak\n\n");
+        scanf(": %d", &ulangi);
+        if(ulangi == 1){
+            D1_1();
+        }else if (ulangi == 2)
+        {
+            outro();
+        }else {
+            printf("anda memasukkan angka yang salah");
+        }
+    }
+    else{
+        outro();
+    }
+    return 0;
+}
+
+int E1_4(){
+    float debit_1, debit_2, debit; //belum di edit brooo
+    int hasil, ulangi, validasi;
+    int hours, minutes, seconds, hari, bulan, tahun;
+
+    time_t now;
+    time(&now);
+    struct tm *local = localtime(&now);
+    hari = local->tm_mday;            
+    bulan = local->tm_mon + 1;      
+    tahun = local->tm_year + 1900;   
+
+    char name[50];
+    printf("|================================================|\n");
+    printf("|                 Masukkan Data Anda             |\n");
+    printf("|================================================|\n");
+    printf("Masukkan nama anda: ");
+    getchar();
+    fgets(name, sizeof(name), stdin);
+    system("clear");
+
+    printf("|====================================================|\n");
+    printf("|                 Masukkan Data Anda                 |\n");
+    printf("|====================================================|\n");
+    printf("|Masukkan debit pemakaian air anda bulan lalu (m^3): ");
+    scanf("%f", &debit_1);
+    printf("|Masukkan debit pemakaian air anda bulan ini (m^3): ");
+    scanf("%f", &debit_2);
+    system("clear");
+    
+    debit = debit_1 - debit_2;
+
+    if(hari < 10){
+        if(debit >= 0 && debit<= 10){
+        hasil = 10 * 1780;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = debit * 2060;
+    }else if (debit > 20){
+        hasil = debit * 5880;
+    }else {
+        printf("masukkan nilai dengan benar");
+    }
+    }else{
+        if(debit >= 0 && debit<= 10){
+        hasil = (10 * 1780) + 1000;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = (debit * 2060)+1000;
+    }else if (debit > 20){
+        hasil = (debit * 5880)+1000;
+    }else {
+        D1_1();
+    }
+    }
+    
+
+    printf("|================================================|\n");
+    printf("|                     Data Anda                  |\n");
+    printf("|================================================|\n");
+    printf("|Nama: %s", name);
+    printf("|Kelompok: D1-1\n");
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_1);
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_2);
+    printf("|Apakah data di atas benar ? \n");
+    printf("|1. iya\n");
+    printf("|2. tidak\n\n: ");
+    scanf("%d", &validasi);
+    system("clear");
+    if(validasi == 1){
+        printf("|================================================|\n");
+        printf("|               Hasil Dari Perhitungan           |\n");
+        printf("|================================================|\n");
+        printf("|Nama: %s", name);
+        printf("|Kelompok: D1-1\n");
+        printf("|Tanggal:  %02d/%02d/%d\n", hari,bulan,tahun);
+        printf("|Nominal Hasil:Rp %d,- ", hasil);
+    }else if (validasi == 2)
+    {
+        printf("Apakah anda ingin mengulangi lagi ?\n");
+        printf("1. iya\n");
+        printf("2. tidak\n\n");
+        scanf(": %d", &ulangi);
+        if(ulangi == 1){
+            D1_1();
+        }else if (ulangi == 2)
+        {
+            outro();
+        }else {
+            printf("anda memasukkan angka yang salah");
+        }
+    }
+    else{
+        outro();
+    }
+    return 0;
+}
+
+int E2_1(){
+    float debit_1, debit_2, debit; //belum di edit brooo
+    int hasil, ulangi, validasi;
+    int hours, minutes, seconds, hari, bulan, tahun;
+
+    time_t now;
+    time(&now);
+    struct tm *local = localtime(&now);
+    hari = local->tm_mday;            
+    bulan = local->tm_mon + 1;      
+    tahun = local->tm_year + 1900;   
+
+    char name[50];
+    printf("|================================================|\n");
+    printf("|                 Masukkan Data Anda             |\n");
+    printf("|================================================|\n");
+    printf("Masukkan nama anda: ");
+    getchar();
+    fgets(name, sizeof(name), stdin);
+    system("clear");
+
+    printf("|====================================================|\n");
+    printf("|                 Masukkan Data Anda                 |\n");
+    printf("|====================================================|\n");
+    printf("|Masukkan debit pemakaian air anda bulan lalu (m^3): ");
+    scanf("%f", &debit_1);
+    printf("|Masukkan debit pemakaian air anda bulan ini (m^3): ");
+    scanf("%f", &debit_2);
+    system("clear");
+    
+    debit = debit_1 - debit_2;
+
+    if(hari < 10){
+        if(debit >= 0 && debit<= 10){
+        hasil = 10 * 1780;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = debit * 2060;
+    }else if (debit > 20){
+        hasil = debit * 5880;
+    }else {
+        printf("masukkan nilai dengan benar");
+    }
+    }else{
+        if(debit >= 0 && debit<= 10){
+        hasil = (10 * 1780) + 1000;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = (debit * 2060)+1000;
+    }else if (debit > 20){
+        hasil = (debit * 5880)+1000;
+    }else {
+        D1_1();
+    }
+    }
+    
+
+    printf("|================================================|\n");
+    printf("|                     Data Anda                  |\n");
+    printf("|================================================|\n");
+    printf("|Nama: %s", name);
+    printf("|Kelompok: D1-1\n");
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_1);
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_2);
+    printf("|Apakah data di atas benar ? \n");
+    printf("|1. iya\n");
+    printf("|2. tidak\n\n: ");
+    scanf("%d", &validasi);
+    system("clear");
+    if(validasi == 1){
+        printf("|================================================|\n");
+        printf("|               Hasil Dari Perhitungan           |\n");
+        printf("|================================================|\n");
+        printf("|Nama: %s", name);
+        printf("|Kelompok: D1-1\n");
+        printf("|Tanggal:  %02d/%02d/%d\n", hari,bulan,tahun);
+        printf("|Nominal Hasil:Rp %d,- ", hasil);
+    }else if (validasi == 2)
+    {
+        printf("Apakah anda ingin mengulangi lagi ?\n");
+        printf("1. iya\n");
+        printf("2. tidak\n\n");
+        scanf(": %d", &ulangi);
+        if(ulangi == 1){
+            D1_1();
+        }else if (ulangi == 2)
+        {
+            outro();
+        }else {
+            printf("anda memasukkan angka yang salah");
+        }
+    }
+    else{
+        outro();
+    }
+    return 0;
+}
+
+int E2_2(){
+    float debit_1, debit_2, debit; //belum di edit brooo
+    int hasil, ulangi, validasi;
+    int hours, minutes, seconds, hari, bulan, tahun;
+
+    time_t now;
+    time(&now);
+    struct tm *local = localtime(&now);
+    hari = local->tm_mday;            
+    bulan = local->tm_mon + 1;      
+    tahun = local->tm_year + 1900;   
+
+    char name[50];
+    printf("|================================================|\n");
+    printf("|                 Masukkan Data Anda             |\n");
+    printf("|================================================|\n");
+    printf("Masukkan nama anda: ");
+    getchar();
+    fgets(name, sizeof(name), stdin);
+    system("clear");
+
+    printf("|====================================================|\n");
+    printf("|                 Masukkan Data Anda                 |\n");
+    printf("|====================================================|\n");
+    printf("|Masukkan debit pemakaian air anda bulan lalu (m^3): ");
+    scanf("%f", &debit_1);
+    printf("|Masukkan debit pemakaian air anda bulan ini (m^3): ");
+    scanf("%f", &debit_2);
+    system("clear");
+    
+    debit = debit_1 - debit_2;
+
+    if(hari < 10){
+        if(debit >= 0 && debit<= 10){
+        hasil = 10 * 1780;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = debit * 2060;
+    }else if (debit > 20){
+        hasil = debit * 5880;
+    }else {
+        printf("masukkan nilai dengan benar");
+    }
+    }else{
+        if(debit >= 0 && debit<= 10){
+        hasil = (10 * 1780) + 1000;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = (debit * 2060)+1000;
+    }else if (debit > 20){
+        hasil = (debit * 5880)+1000;
+    }else {
+        D1_1();
+    }
+    }
+    
+
+    printf("|================================================|\n");
+    printf("|                     Data Anda                  |\n");
+    printf("|================================================|\n");
+    printf("|Nama: %s", name);
+    printf("|Kelompok: D1-1\n");
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_1);
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_2);
+    printf("|Apakah data di atas benar ? \n");
+    printf("|1. iya\n");
+    printf("|2. tidak\n\n: ");
+    scanf("%d", &validasi);
+    system("clear");
+    if(validasi == 1){
+        printf("|================================================|\n");
+        printf("|               Hasil Dari Perhitungan           |\n");
+        printf("|================================================|\n");
+        printf("|Nama: %s", name);
+        printf("|Kelompok: D1-1\n");
+        printf("|Tanggal:  %02d/%02d/%d\n", hari,bulan,tahun);
+        printf("|Nominal Hasil:Rp %d,- ", hasil);
+    }else if (validasi == 2)
+    {
+        printf("Apakah anda ingin mengulangi lagi ?\n");
+        printf("1. iya\n");
+        printf("2. tidak\n\n");
+        scanf(": %d", &ulangi);
+        if(ulangi == 1){
+            D1_1();
+        }else if (ulangi == 2)
+        {
+            outro();
+        }else {
+            printf("anda memasukkan angka yang salah");
+        }
+    }
+    else{
+        outro();
+    }
+    return 0;
+}
+
+int E2_3(){
+    float debit_1, debit_2, debit; //belum di edit brooo
+    int hasil, ulangi, validasi;
+    int hours, minutes, seconds, hari, bulan, tahun;
+
+    time_t now;
+    time(&now);
+    struct tm *local = localtime(&now);
+    hari = local->tm_mday;            
+    bulan = local->tm_mon + 1;      
+    tahun = local->tm_year + 1900;   
+
+    char name[50];
+    printf("|================================================|\n");
+    printf("|                 Masukkan Data Anda             |\n");
+    printf("|================================================|\n");
+    printf("Masukkan nama anda: ");
+    getchar();
+    fgets(name, sizeof(name), stdin);
+    system("clear");
+
+    printf("|====================================================|\n");
+    printf("|                 Masukkan Data Anda                 |\n");
+    printf("|====================================================|\n");
+    printf("|Masukkan debit pemakaian air anda bulan lalu (m^3): ");
+    scanf("%f", &debit_1);
+    printf("|Masukkan debit pemakaian air anda bulan ini (m^3): ");
+    scanf("%f", &debit_2);
+    system("clear");
+    
+    debit = debit_1 - debit_2;
+
+    if(hari < 10){
+        if(debit >= 0 && debit<= 10){
+        hasil = 10 * 1780;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = debit * 2060;
+    }else if (debit > 20){
+        hasil = debit * 5880;
+    }else {
+        printf("masukkan nilai dengan benar");
+    }
+    }else{
+        if(debit >= 0 && debit<= 10){
+        hasil = (10 * 1780) + 1000;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = (debit * 2060)+1000;
+    }else if (debit > 20){
+        hasil = (debit * 5880)+1000;
+    }else {
+        D1_1();
+    }
+    }
+    
+
+    printf("|================================================|\n");
+    printf("|                     Data Anda                  |\n");
+    printf("|================================================|\n");
+    printf("|Nama: %s", name);
+    printf("|Kelompok: D1-1\n");
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_1);
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_2);
+    printf("|Apakah data di atas benar ? \n");
+    printf("|1. iya\n");
+    printf("|2. tidak\n\n: ");
+    scanf("%d", &validasi);
+    system("clear");
+    if(validasi == 1){
+        printf("|================================================|\n");
+        printf("|               Hasil Dari Perhitungan           |\n");
+        printf("|================================================|\n");
+        printf("|Nama: %s", name);
+        printf("|Kelompok: D1-1\n");
+        printf("|Tanggal:  %02d/%02d/%d\n", hari,bulan,tahun);
+        printf("|Nominal Hasil:Rp %d,- ", hasil);
+    }else if (validasi == 2)
+    {
+        printf("Apakah anda ingin mengulangi lagi ?\n");
+        printf("1. iya\n");
+        printf("2. tidak\n\n");
+        scanf(": %d", &ulangi);
+        if(ulangi == 1){
+            D1_1();
+        }else if (ulangi == 2)
+        {
+            outro();
+        }else {
+            printf("anda memasukkan angka yang salah");
+        }
+    }
+    else{
+        outro();
+    }
+    return 0;
+}
+
+int E2_4(){
+    float debit_1, debit_2, debit; //belum di edit brooo
+    int hasil, ulangi, validasi;
+    int hours, minutes, seconds, hari, bulan, tahun;
+
+    time_t now;
+    time(&now);
+    struct tm *local = localtime(&now);
+    hari = local->tm_mday;            
+    bulan = local->tm_mon + 1;      
+    tahun = local->tm_year + 1900;   
+
+    char name[50];
+    printf("|================================================|\n");
+    printf("|                 Masukkan Data Anda             |\n");
+    printf("|================================================|\n");
+    printf("Masukkan nama anda: ");
+    getchar();
+    fgets(name, sizeof(name), stdin);
+    system("clear");
+
+    printf("|====================================================|\n");
+    printf("|                 Masukkan Data Anda                 |\n");
+    printf("|====================================================|\n");
+    printf("|Masukkan debit pemakaian air anda bulan lalu (m^3): ");
+    scanf("%f", &debit_1);
+    printf("|Masukkan debit pemakaian air anda bulan ini (m^3): ");
+    scanf("%f", &debit_2);
+    system("clear");
+    
+    debit = debit_1 - debit_2;
+
+    if(hari < 10){
+        if(debit >= 0 && debit<= 10){
+        hasil = 10 * 1780;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = debit * 2060;
+    }else if (debit > 20){
+        hasil = debit * 5880;
+    }else {
+        printf("masukkan nilai dengan benar");
+    }
+    }else{
+        if(debit >= 0 && debit<= 10){
+        hasil = (10 * 1780) + 1000;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = (debit * 2060)+1000;
+    }else if (debit > 20){
+        hasil = (debit * 5880)+1000;
+    }else {
+        D1_1();
+    }
+    }
+    
+
+    printf("|================================================|\n");
+    printf("|                     Data Anda                  |\n");
+    printf("|================================================|\n");
+    printf("|Nama: %s", name);
+    printf("|Kelompok: D1-1\n");
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_1);
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_2);
+    printf("|Apakah data di atas benar ? \n");
+    printf("|1. iya\n");
+    printf("|2. tidak\n\n: ");
+    scanf("%d", &validasi);
+    system("clear");
+    if(validasi == 1){
+        printf("|================================================|\n");
+        printf("|               Hasil Dari Perhitungan           |\n");
+        printf("|================================================|\n");
+        printf("|Nama: %s", name);
+        printf("|Kelompok: D1-1\n");
+        printf("|Tanggal:  %02d/%02d/%d\n", hari,bulan,tahun);
+        printf("|Nominal Hasil:Rp %d,- ", hasil);
+    }else if (validasi == 2)
+    {
+        printf("Apakah anda ingin mengulangi lagi ?\n");
+        printf("1. iya\n");
+        printf("2. tidak\n\n");
+        scanf(": %d", &ulangi);
+        if(ulangi == 1){
+            D1_1();
+        }else if (ulangi == 2)
+        {
+            outro();
+        }else {
+            printf("anda memasukkan angka yang salah");
+        }
+    }
+    else{
+        outro();
+    }
+    return 0;
+}
+
+int E3_1(){
+    float debit_1, debit_2, debit; //belum di edit brooo
+    int hasil, ulangi, validasi;
+    int hours, minutes, seconds, hari, bulan, tahun;
+
+    time_t now;
+    time(&now);
+    struct tm *local = localtime(&now);
+    hari = local->tm_mday;            
+    bulan = local->tm_mon + 1;      
+    tahun = local->tm_year + 1900;   
+
+    char name[50];
+    printf("|================================================|\n");
+    printf("|                 Masukkan Data Anda             |\n");
+    printf("|================================================|\n");
+    printf("Masukkan nama anda: ");
+    getchar();
+    fgets(name, sizeof(name), stdin);
+    system("clear");
+
+    printf("|====================================================|\n");
+    printf("|                 Masukkan Data Anda                 |\n");
+    printf("|====================================================|\n");
+    printf("|Masukkan debit pemakaian air anda bulan lalu (m^3): ");
+    scanf("%f", &debit_1);
+    printf("|Masukkan debit pemakaian air anda bulan ini (m^3): ");
+    scanf("%f", &debit_2);
+    system("clear");
+    
+    debit = debit_1 - debit_2;
+
+    if(hari < 10){
+        if(debit >= 0 && debit<= 10){
+        hasil = 10 * 1780;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = debit * 2060;
+    }else if (debit > 20){
+        hasil = debit * 5880;
+    }else {
+        printf("masukkan nilai dengan benar");
+    }
+    }else{
+        if(debit >= 0 && debit<= 10){
+        hasil = (10 * 1780) + 1000;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = (debit * 2060)+1000;
+    }else if (debit > 20){
+        hasil = (debit * 5880)+1000;
+    }else {
+        D1_1();
+    }
+    }
+    
+
+    printf("|================================================|\n");
+    printf("|                     Data Anda                  |\n");
+    printf("|================================================|\n");
+    printf("|Nama: %s", name);
+    printf("|Kelompok: D1-1\n");
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_1);
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_2);
+    printf("|Apakah data di atas benar ? \n");
+    printf("|1. iya\n");
+    printf("|2. tidak\n\n: ");
+    scanf("%d", &validasi);
+    system("clear");
+    if(validasi == 1){
+        printf("|================================================|\n");
+        printf("|               Hasil Dari Perhitungan           |\n");
+        printf("|================================================|\n");
+        printf("|Nama: %s", name);
+        printf("|Kelompok: D1-1\n");
+        printf("|Tanggal:  %02d/%02d/%d\n", hari,bulan,tahun);
+        printf("|Nominal Hasil:Rp %d,- ", hasil);
+    }else if (validasi == 2)
+    {
+        printf("Apakah anda ingin mengulangi lagi ?\n");
+        printf("1. iya\n");
+        printf("2. tidak\n\n");
+        scanf(": %d", &ulangi);
+        if(ulangi == 1){
+            D1_1();
+        }else if (ulangi == 2)
+        {
+            outro();
+        }else {
+            printf("anda memasukkan angka yang salah");
+        }
+    }
+    else{
+        outro();
+    }
+    return 0;
+}
+
+int E3_2(){
+    float debit_1, debit_2, debit; //belum di edit brooo
+    int hasil, ulangi, validasi;
+    int hours, minutes, seconds, hari, bulan, tahun;
+
+    time_t now;
+    time(&now);
+    struct tm *local = localtime(&now);
+    hari = local->tm_mday;            
+    bulan = local->tm_mon + 1;      
+    tahun = local->tm_year + 1900;   
+
+    char name[50];
+    printf("|================================================|\n");
+    printf("|                 Masukkan Data Anda             |\n");
+    printf("|================================================|\n");
+    printf("Masukkan nama anda: ");
+    getchar();
+    fgets(name, sizeof(name), stdin);
+    system("clear");
+
+    printf("|====================================================|\n");
+    printf("|                 Masukkan Data Anda                 |\n");
+    printf("|====================================================|\n");
+    printf("|Masukkan debit pemakaian air anda bulan lalu (m^3): ");
+    scanf("%f", &debit_1);
+    printf("|Masukkan debit pemakaian air anda bulan ini (m^3): ");
+    scanf("%f", &debit_2);
+    system("clear");
+    
+    debit = debit_1 - debit_2;
+
+    if(hari < 10){
+        if(debit >= 0 && debit<= 10){
+        hasil = 10 * 1780;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = debit * 2060;
+    }else if (debit > 20){
+        hasil = debit * 5880;
+    }else {
+        printf("masukkan nilai dengan benar");
+    }
+    }else{
+        if(debit >= 0 && debit<= 10){
+        hasil = (10 * 1780) + 1000;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = (debit * 2060)+1000;
+    }else if (debit > 20){
+        hasil = (debit * 5880)+1000;
+    }else {
+        D1_1();
+    }
+    }
+    
+
+    printf("|================================================|\n");
+    printf("|                     Data Anda                  |\n");
+    printf("|================================================|\n");
+    printf("|Nama: %s", name);
+    printf("|Kelompok: D1-1\n");
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_1);
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_2);
+    printf("|Apakah data di atas benar ? \n");
+    printf("|1. iya\n");
+    printf("|2. tidak\n\n: ");
+    scanf("%d", &validasi);
+    system("clear");
+    if(validasi == 1){
+        printf("|================================================|\n");
+        printf("|               Hasil Dari Perhitungan           |\n");
+        printf("|================================================|\n");
+        printf("|Nama: %s", name);
+        printf("|Kelompok: D1-1\n");
+        printf("|Tanggal:  %02d/%02d/%d\n", hari,bulan,tahun);
+        printf("|Nominal Hasil:Rp %d,- ", hasil);
+    }else if (validasi == 2)
+    {
+        printf("Apakah anda ingin mengulangi lagi ?\n");
+        printf("1. iya\n");
+        printf("2. tidak\n\n");
+        scanf(": %d", &ulangi);
+        if(ulangi == 1){
+            D1_1();
+        }else if (ulangi == 2)
+        {
+            outro();
+        }else {
+            printf("anda memasukkan angka yang salah");
+        }
+    }
+    else{
+        outro();
+    }
+    return 0;
+}
+
+int E3_3(){
+    float debit_1, debit_2, debit; //belum di edit brooo
+    int hasil, ulangi, validasi;
+    int hours, minutes, seconds, hari, bulan, tahun;
+
+    time_t now;
+    time(&now);
+    struct tm *local = localtime(&now);
+    hari = local->tm_mday;            
+    bulan = local->tm_mon + 1;      
+    tahun = local->tm_year + 1900;   
+
+    char name[50];
+    printf("|================================================|\n");
+    printf("|                 Masukkan Data Anda             |\n");
+    printf("|================================================|\n");
+    printf("Masukkan nama anda: ");
+    getchar();
+    fgets(name, sizeof(name), stdin);
+    system("clear");
+
+    printf("|====================================================|\n");
+    printf("|                 Masukkan Data Anda                 |\n");
+    printf("|====================================================|\n");
+    printf("|Masukkan debit pemakaian air anda bulan lalu (m^3): ");
+    scanf("%f", &debit_1);
+    printf("|Masukkan debit pemakaian air anda bulan ini (m^3): ");
+    scanf("%f", &debit_2);
+    system("clear");
+    
+    debit = debit_1 - debit_2;
+
+    if(hari < 10){
+        if(debit >= 0 && debit<= 10){
+        hasil = 10 * 1780;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = debit * 2060;
+    }else if (debit > 20){
+        hasil = debit * 5880;
+    }else {
+        printf("masukkan nilai dengan benar");
+    }
+    }else{
+        if(debit >= 0 && debit<= 10){
+        hasil = (10 * 1780) + 1000;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = (debit * 2060)+1000;
+    }else if (debit > 20){
+        hasil = (debit * 5880)+1000;
+    }else {
+        D1_1();
+    }
+    }
+    
+
+    printf("|================================================|\n");
+    printf("|                     Data Anda                  |\n");
+    printf("|================================================|\n");
+    printf("|Nama: %s", name);
+    printf("|Kelompok: D1-1\n");
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_1);
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_2);
+    printf("|Apakah data di atas benar ? \n");
+    printf("|1. iya\n");
+    printf("|2. tidak\n\n: ");
+    scanf("%d", &validasi);
+    system("clear");
+    if(validasi == 1){
+        printf("|================================================|\n");
+        printf("|               Hasil Dari Perhitungan           |\n");
+        printf("|================================================|\n");
+        printf("|Nama: %s", name);
+        printf("|Kelompok: D1-1\n");
+        printf("|Tanggal:  %02d/%02d/%d\n", hari,bulan,tahun);
+        printf("|Nominal Hasil:Rp %d,- ", hasil);
+    }else if (validasi == 2)
+    {
+        printf("Apakah anda ingin mengulangi lagi ?\n");
+        printf("1. iya\n");
+        printf("2. tidak\n\n");
+        scanf(": %d", &ulangi);
+        if(ulangi == 1){
+            D1_1();
+        }else if (ulangi == 2)
+        {
+            outro();
+        }else {
+            printf("anda memasukkan angka yang salah");
+        }
+    }
+    else{
+        outro();
+    }
+    return 0;
+}
+
+int E3_4(){
+    float debit_1, debit_2, debit; //belum di edit brooo
+    int hasil, ulangi, validasi;
+    int hours, minutes, seconds, hari, bulan, tahun;
+
+    time_t now;
+    time(&now);
+    struct tm *local = localtime(&now);
+    hari = local->tm_mday;            
+    bulan = local->tm_mon + 1;      
+    tahun = local->tm_year + 1900;   
+
+    char name[50];
+    printf("|================================================|\n");
+    printf("|                 Masukkan Data Anda             |\n");
+    printf("|================================================|\n");
+    printf("Masukkan nama anda: ");
+    getchar();
+    fgets(name, sizeof(name), stdin);
+    system("clear");
+
+    printf("|====================================================|\n");
+    printf("|                 Masukkan Data Anda                 |\n");
+    printf("|====================================================|\n");
+    printf("|Masukkan debit pemakaian air anda bulan lalu (m^3): ");
+    scanf("%f", &debit_1);
+    printf("|Masukkan debit pemakaian air anda bulan ini (m^3): ");
+    scanf("%f", &debit_2);
+    system("clear");
+    
+    debit = debit_1 - debit_2;
+
+    if(hari < 10){
+        if(debit >= 0 && debit<= 10){
+        hasil = 10 * 1780;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = debit * 2060;
+    }else if (debit > 20){
+        hasil = debit * 5880;
+    }else {
+        printf("masukkan nilai dengan benar");
+    }
+    }else{
+        if(debit >= 0 && debit<= 10){
+        hasil = (10 * 1780) + 1000;
+    }else if (debit >= 11 && debit <= 20){
+        hasil = (debit * 2060)+1000;
+    }else if (debit > 20){
+        hasil = (debit * 5880)+1000;
+    }else {
+        D1_1();
+    }
+    }
+    
+
+    printf("|================================================|\n");
+    printf("|                     Data Anda                  |\n");
+    printf("|================================================|\n");
+    printf("|Nama: %s", name);
+    printf("|Kelompok: D1-1\n");
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_1);
+    printf("|Debit penggunaan bulan lalu: %.2f m^3\n", debit_2);
+    printf("|Apakah data di atas benar ? \n");
+    printf("|1. iya\n");
+    printf("|2. tidak\n\n: ");
+    scanf("%d", &validasi);
+    system("clear");
+    if(validasi == 1){
+        printf("|================================================|\n");
+        printf("|               Hasil Dari Perhitungan           |\n");
+        printf("|================================================|\n");
+        printf("|Nama: %s", name);
+        printf("|Kelompok: D1-1\n");
+        printf("|Tanggal:  %02d/%02d/%d\n", hari,bulan,tahun);
+        printf("|Nominal Hasil:Rp %d,- ", hasil);
+    }else if (validasi == 2)
+    {
+        printf("Apakah anda ingin mengulangi lagi ?\n");
+        printf("1. iya\n");
+        printf("2. tidak\n\n");
+        scanf(": %d", &ulangi);
+        if(ulangi == 1){
+            D1_1();
+        }else if (ulangi == 2)
+        {
+            outro();
+        }else {
+            printf("anda memasukkan angka yang salah");
+        }
+    }
+    else{
+        outro();
+    }
+    return 0;
+}
 
 int rumah_tangga(){
     int daya, lebar;
+
+
+
 
     printf("|=================================================================================|\n");
     printf("|                               Perhitungan Rumah Tangga                          |\n");
@@ -321,9 +3033,9 @@ int rumah_tangga(){
     printf("|================================================|\n");
     printf("|Berapakah lebar jalan termasuk lebar got        |\n");
     printf("|di depan rumah anda:                            |\n");
-    printf("|1. 0 - 3.99 M                                   |\n");
-    printf("|2. 4 - 6.99 M                                   |\n");
-    printf("|3. 7 - 10 M                                     |\n");
+    printf("|1. 0 - 3.99 m                                   |\n");
+    printf("|2. 4 - 6.99 m                                   |\n");
+    printf("|3. 7 - 10 m                                     |\n");
     printf("|4. lebih lebar dari 10 M                        |\n");
     printf("|Masukkan pilihan anda:                          |\n");
     printf("|: ");
@@ -344,7 +3056,7 @@ int rumah_tangga(){
         D1_1();
     }else if (lebar == 1 &&  daya == 2){
         D1_2();
-    }
+    }else
     //     D2_1();
     // }
     
@@ -361,9 +3073,9 @@ int niaga(){
     printf("|================================================|\n");
     printf("|Berapakah lebar jalan termasuk lebar got        |\n");
     printf("|di depan rumah anda:                            |\n");
-    printf("|1. 0 - 6.99 M                                   |\n");
-    printf("|2. 7 - 10 M                                     |\n");
-    printf("|3. lebih lebar dari 10 M                        |\n");
+    printf("|1. 0 - 6.99 m                                   |\n");
+    printf("|2. 7 - 10 m                                     |\n");
+    printf("|3. lebih lebar dari 10 m                        |\n");
     printf("|Masukkan pilihan anda:                          |\n");
     printf("|: ");
     scanf("%d", &lebar);
@@ -417,9 +3129,6 @@ int main(){
         break;
     }
 
-    // printf("|============================================|\n");
-    // printf("\t\tTerimakasih Telah Mencoba    \n");
-    // printf("\tProgram ini dibuat oleh : \n");
-    // printf("|============================================|\n\n");
+    
 
 }
